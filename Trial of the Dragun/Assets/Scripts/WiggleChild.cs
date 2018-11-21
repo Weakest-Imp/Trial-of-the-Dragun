@@ -7,6 +7,7 @@ public class WiggleChild : MonoBehaviour {
 	[SerializeField] float wiggleAmp;
 	[SerializeField] float wiggleTime;
 	float wiggleTimeFactor;
+	[SerializeField] float wiggleOffSet;
 
 	Transform parent;
 
@@ -14,7 +15,7 @@ public class WiggleChild : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		time = 0;
+		time = wiggleOffSet * Mathf.PI;
 		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime;
 		parent = this.transform.parent;
 	}
