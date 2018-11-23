@@ -4,30 +4,38 @@ using UnityEngine;
 
 public class Background : MonoBehaviour {
 
-	[SerializeField] float slideSpeed;
-	[SerializeField] float speedChangeTime;
+	[SerializeField] float slideSpeed1 = -5;
+	[SerializeField] float slideSpeed2 = 10;
+	float slideSpeed;
+
+	[SerializeField] float speedChangeTime = 1;
 	float scale;
+
+	private Rigidbody2D rb;
 
 	void Start () 
 	{
 		scale = this.transform.parent.localScale.x;
+		rb = this.GetComponent<Rigidbody2D> ();
+		rb.velocity = new Vector2 (slideSpeed1, 0);
 	}
 
 	void Update () {
-		Slide ();
+		Overflow ();
 	}
 	
 	// Slides the background at requested speed
-	void Slide () {
-		float x = this.transform.position.x + slideSpeed * Time.deltaTime;
-		float y = this.transform.position.y;
-		float z = this.transform.position.z;
-		Overflow (x, y, z);
-	}
+//	void Slide () {
+//		
+//		Overflow (x, y, z);
+//	}
 
 	// Teleports the background back once it goes out of screen
-	void Overflow (float x, float y, float z)
+	void Overflow ()
 	{
+		float x = this.transform.position.x;
+		float y = this.transform.position.y;
+		float z = this.transform.position.z;
 		if (x > 5.25F * scale) {
 			this.transform.position = new Vector3 (x - 10.24F * scale, y, z);
 		} else {
@@ -42,18 +50,21 @@ public class Background : MonoBehaviour {
 	public void speedChange (float newSpeed) {
 		StartCoroutine (speedChangeCoroutine(newSpeed));
 	}
+	public void Phase2 () {
+		StartCoroutine (speedChangeCoroutine(slideSpeed2));
+	}
 
 	IEnumerator speedChangeCoroutine (float newSpeed)
 	//Changes the speed smoothly
 	{
-		float change = newSpeed - slideSpeed;
+		Vector2 change = new Vector2(newSpeed - rb.velocity.x, 0);
 		float time = 0;
 		change = change / speedChangeTime;
 		while (time < speedChangeTime) {
 			yield return null;
-			slideSpeed += Time.deltaTime * change;
+			rb.velocity += Time.deltaTime * change;
 			time += Time.deltaTime;
 		}
-		slideSpeed = newSpeed;
+		rb.velocity = new Vector2(newSpeed, 0);
 	}
 }

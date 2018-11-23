@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	[SerializeField] private float playerSpeed;
+	[SerializeField] private float playerSpeed = 10;
 
 	private Rigidbody2D rb;
 
@@ -27,9 +27,9 @@ public class PlayerController : MonoBehaviour {
 
 	//Genral Control for Scene Management________________________________________________________________________________________________________________________________________________________________
 	void checkInput () {
-		horInput = Input.GetAxis ("Horizontal");
-		verInput = Input.GetAxis ("Vertical");
-		fireInput = Input.GetAxis ("Fire1");
+		horInput = Input.GetAxisRaw ("Horizontal");
+		verInput = Input.GetAxisRaw ("Vertical");
+		fireInput = Input.GetAxisRaw ("Fire1");
 	}
 
 	void resetInput () {
@@ -49,11 +49,26 @@ public class PlayerController : MonoBehaviour {
 
 	//Movement_____________________________________________________________________________________________________________________________________________________________________________________________
 	void Move () {
-		Vector2 move = new Vector2 (horInput, verInput);
-		if (move.magnitude > 1) {
-			move = move / move.magnitude;
+		Vector2 move = Vector2.zero;
+		float hor = 0;
+		float ver = 0;
+		if (horInput < 0) {
+			hor = horInput - 1;
+		} if (horInput > 0) {
+			hor = horInput + 1;
 		}
-		//move.Normalize ();
+
+		if (verInput < 0) {
+			ver = verInput - 1;
+		}if (verInput > 0) {
+			ver = verInput + 1;
+		}
+
+		move = new Vector2(hor/2, ver/2);
+		if (move.magnitude > 1) {
+			move.Normalize();
+		}
+		
 		rb.velocity = playerSpeed * move;
 	}
 
