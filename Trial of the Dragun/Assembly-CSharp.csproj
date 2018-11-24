@@ -53,10 +53,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Background.cs" />
-     <Compile Include="Assets\Scripts\Dragun.cs" />
-     <Compile Include="Assets\Scripts\DragunBody.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\Dragun\Dragun.cs" />
+     <Compile Include="Assets\Scripts\Dragun\DragunBody.cs" />
+     <Compile Include="Assets\Scripts\Dragun\DragunClaw.cs" />
+     <Compile Include="Assets\Scripts\Other\Background.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
+     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Quentin/Desktop/Jeux/Projets Unity/Trial-of-the-Dragun/Trial of the Dragun/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

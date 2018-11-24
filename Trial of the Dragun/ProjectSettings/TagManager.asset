@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Dragon
   - DraGun
+  - DraGunClaw
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX

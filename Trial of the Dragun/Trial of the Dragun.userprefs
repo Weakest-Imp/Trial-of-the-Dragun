@@ -1,11 +1,12 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dragun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dragun\DragunClaw.cs">
     <Files>
-      <File FileName="Assets\Scripts\PlayerController.cs" Line="44" Column="11" />
-      <File FileName="Assets\Scripts\Background.cs" Line="26" Column="2" />
-      <File FileName="Assets\Scripts\DraGunBody.cs" Line="42" Column="23" />
-      <File FileName="Assets\Scripts\Dragun.cs" Line="36" Column="9" />
+      <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="21" Column="46" />
+      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="84" Column="73" />
+      <File FileName="Assets\Scripts\Dragun\Dragun.cs" Line="25" Column="25" />
+      <File FileName="Assets\Scripts\Dragun\DragunBody.cs" Line="43" Column="4" />
+      <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="23" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
