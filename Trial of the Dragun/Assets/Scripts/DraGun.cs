@@ -8,7 +8,7 @@ public class DraGun : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		head.PositionInitialize ();
 	}
 	
 	// Update is called once per frame
