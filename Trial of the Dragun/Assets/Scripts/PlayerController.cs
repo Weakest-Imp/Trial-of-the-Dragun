@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour {
 	public void playerDisable () {
 		this.enabled = false;
 		resetInput ();
+		Move ();
 	}
 
 	public void playerEnable () {

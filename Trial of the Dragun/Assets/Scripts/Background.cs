@@ -23,12 +23,7 @@ public class Background : MonoBehaviour {
 	void Update () {
 		Overflow ();
 	}
-	
-	// Slides the background at requested speed
-//	void Slide () {
-//		
-//		Overflow (x, y, z);
-//	}
+
 
 	// Teleports the background back once it goes out of screen
 	void Overflow ()
