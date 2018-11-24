@@ -16,7 +16,7 @@ public class DragonDetector : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		Debug.Log ("There's something...");
-		if (other.gameObject.tag == "DraGun") {
+		if (other.gameObject.tag == "Dragon") {
 			Debug.Log ("IT'S THE DRAGUN!!!!!!");
 		}
 	}
