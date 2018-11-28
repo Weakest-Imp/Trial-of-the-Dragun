@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float shootCooldown;
 	private float cooldown = 0;
 
+	[SerializeField] private int maxHealth = 6;
+	private int health;
+
 	private Rigidbody2D rb;
 
 	private float horInput;
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
+		health = maxHealth;
 	}
 
 
@@ -93,4 +97,20 @@ public class PlayerController : MonoBehaviour {
 			cooldown -= Time.deltaTime;
 		}
 	}
+
+
+	//Interactions_____________________________________________________________________________
+	void OnTriggerEnter2D (Collider2D other) {
+		if (other.gameObject.tag == "DraGunBullet") {
+			TakeDamage (1);
+		}
+	}
+
+	void TakeDamage (int damage) {
+		health -= damage;
+		if (health < 1) {
+			DragunSceneManager.Instance.GameOver ();
+		}
+	}
+
 }

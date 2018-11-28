@@ -39,8 +39,8 @@ public class DragunBody : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "PlayerBullet") {
+			Debug.Log ("Hurt animation");
 			dragun.TakeDamage (damage);
-			Debug.Log (damage);
 		}
 	}
 

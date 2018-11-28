@@ -9,7 +9,7 @@ public class PlayerBullet : MonoBehaviour {
 	private Rigidbody2D rb;
 
 
-	void Start () {
+	void Awake () {
 		rb = this.GetComponent<Rigidbody2D> ();
 		rb.velocity = new Vector2 (speed, 0);
 	}
@@ -24,6 +24,7 @@ public class PlayerBullet : MonoBehaviour {
 	}
 
 	void Explosion () {
+		Debug.Log ("Boom...");
 		//Animation
 		Destroy (this.gameObject);
 	}

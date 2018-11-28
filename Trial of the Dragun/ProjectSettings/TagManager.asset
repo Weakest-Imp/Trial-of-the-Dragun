@@ -8,6 +8,8 @@ TagManager:
   - DraGun
   - DraGunClaw
   - PlayerBullet
+  - DraGunBullet
+  - Wall
   layers:
   - Default
   - TransparentFX

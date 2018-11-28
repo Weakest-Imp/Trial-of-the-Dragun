@@ -55,7 +55,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Dragun\Dragun.cs" />
      <Compile Include="Assets\Scripts\Dragun\DragunBody.cs" />
+     <Compile Include="Assets\Scripts\Dragun\DragunBullet.cs" />
      <Compile Include="Assets\Scripts\Dragun\DragunClaw.cs" />
+     <Compile Include="Assets\Scripts\Managers\DragunSceneManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Other\Background.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
