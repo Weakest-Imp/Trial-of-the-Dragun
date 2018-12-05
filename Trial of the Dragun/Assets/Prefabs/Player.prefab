@@ -119,8 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 10
-  bullet: {fileID: 1837506876629132, guid: ac4903df6f22a034b98858233540b50d, type: 2}
+  bullet: {fileID: 1960480806436422, guid: 0c7602f434b478446b1b046911b97c01, type: 2}
   shootCooldown: 0.5
+  maxHealth: 6
 --- !u!212 &212360081847865720
 SpriteRenderer:
   m_ObjectHideFlags: 1

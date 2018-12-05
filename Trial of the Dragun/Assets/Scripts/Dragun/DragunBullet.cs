@@ -21,6 +21,10 @@ public class DragunBullet : MonoBehaviour {
 		player = DragunSceneManager.Instance.GetPlayer ();
 	}
 
+	void Update () {
+		Rotate ();
+	}
+
 	//Initialisation__________________________________________________________________________
 	public void DefineIncline (int newIncline) {
 		incline = newIncline;
@@ -73,6 +77,11 @@ public class DragunBullet : MonoBehaviour {
 		float speedY = g * T / 2 + deltaY / T;
 
 		rb.velocity = new Vector2 ( -1 * curvedSpeed, speedY);
+	}
+
+	void Rotate () {
+		float angle = Mathf.Atan2 (-1 * rb.velocity.y, rb.velocity.x);
+		this.transform.rotation = Quaternion.Euler (0, 0,-180 * angle / Mathf.PI -180);
 	}
 
 
