@@ -46,4 +46,10 @@ public class Dragun : MonoBehaviour {
 		body [0].Restart ();
 	}
 
+	public void Phase2 (){
+		foreach (DragunBody part in body) {
+			part.Phase2 ();
+		}
+	}
+
 }

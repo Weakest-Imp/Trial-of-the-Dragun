@@ -10,15 +10,17 @@ public class DragunClaw : MonoBehaviour {
 	[SerializeField] private int damage = 2;
 
 
-	[SerializeField] private float buildUpTimeStraight = 1;
+	[SerializeField] private float buildUpTimeStraight = 1.2f;
 	[SerializeField] private Vector3 positionDeviationStraight;
 
-	[SerializeField] private float buildUpTimeCurved = 0.5f;
+	[SerializeField] private float buildUpTimeCurved = 0.7f;
 	[SerializeField] private Vector3 positionDeviationUp;
 	[SerializeField] private Vector3 positionDeviationDown;
 
+	private Animator anim;
+
 	void Start () {
-		
+		anim = this.GetComponent<Animator> ();
 	}
 	
 
@@ -41,8 +43,7 @@ public class DragunClaw : MonoBehaviour {
 		StartCoroutine (StraightShotCoroutine ());
 	}
 	IEnumerator StraightShotCoroutine () {
-		Debug.Log ("The gun spins 2 times");
-		//Animation: spinning Gun
+		anim.SetTrigger ("Straight");
 		yield return new WaitForSeconds (buildUpTimeStraight);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationStraight, this.transform.rotation);
@@ -53,8 +54,7 @@ public class DragunClaw : MonoBehaviour {
 		StartCoroutine (UpShotCoroutine ());
 	}
 	IEnumerator UpShotCoroutine () {
-		Debug.Log ("The gun spins 1 time");
-		//Animation: spinning Gun
+		anim.SetTrigger ("Up");
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationUp, this.transform.rotation);
@@ -65,8 +65,7 @@ public class DragunClaw : MonoBehaviour {
 		StartCoroutine (DownShotCoroutine ());
 	}
 	IEnumerator DownShotCoroutine () {
-		Debug.Log ("The gun spins 1 time in the other way");
-		//Animation: spinning Gun
+		anim.SetTrigger ("Down");
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationDown, this.transform.rotation);
