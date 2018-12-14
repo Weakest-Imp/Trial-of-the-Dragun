@@ -1,13 +1,13 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dragun\Dragun.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\PlayerController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Dragun\Dragun.cs" Line="16" Column="35" />
+      <File FileName="Assets\Scripts\Dragun\Dragun.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Dragun\DragunBody.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="67" Column="36" />
-      <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="113" Column="3" />
-      <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="12" Column="12" />
-      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="14" Column="56" />
       <File FileName="Assets\Scripts\Managers\DragunSceneManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

@@ -718,6 +718,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 212360081847865720, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: flickerTime
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: invicibilityTime
+      value: 0.8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b3dcc3649f72374f9a3afa30ccf491c, type: 2}
   m_IsPrefabAsset: 0

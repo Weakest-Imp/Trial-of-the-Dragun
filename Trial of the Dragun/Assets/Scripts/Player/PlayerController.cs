@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private int maxHealth = 6;
 	private int health;
+	[SerializeField] private float invicibilityTime = 0.8f;
+	private bool invincible = false;
+	[SerializeField] private float flickerTime = 0.1f;
+	private SpriteRenderer sr;
 
 	private Rigidbody2D rb;
 
@@ -21,6 +25,7 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
+		sr = this.GetComponent<SpriteRenderer> ();
 		health = maxHealth;
 	}
 
@@ -101,16 +106,30 @@ public class PlayerController : MonoBehaviour {
 
 	//Interactions_____________________________________________________________________________
 	void OnTriggerEnter2D (Collider2D other) {
-		if (other.gameObject.tag == "DraGunBullet") {
+		if (!invincible && other.gameObject.tag == "DraGunBullet") {
 			TakeDamage (1);
 		}
 	}
 
 	void TakeDamage (int damage) {
+		Debug.Log (health);
+		StartCoroutine (Invincibility ());
 		health -= damage;
 		if (health < 1) {
 			DragunSceneManager.Instance.GameOver ();
 		}
+	}
+
+	IEnumerator Invincibility () {
+		invincible = true;
+		float time = 0;
+		while (time < invicibilityTime) {
+			sr.enabled = !sr.enabled;
+			yield return new WaitForSeconds (flickerTime);
+			time += Time.deltaTime;
+		}
+		sr.enabled = true;
+		invincible = false;
 	}
 
 }
