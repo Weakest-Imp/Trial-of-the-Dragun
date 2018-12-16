@@ -3172,6 +3172,8 @@ MonoBehaviour:
   buildUpTimeCurved: 0.7
   positionDeviationUp: {x: -0.14, y: 1.8, z: 0}
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
+  straightSpeed: 10
+  curvedSpeed: 5
 --- !u!61 &1805052163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3319,6 +3321,8 @@ MonoBehaviour:
   buildUpTimeCurved: 0.7
   positionDeviationUp: {x: -0.14, y: 1.8, z: 0}
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
+  straightSpeed: 15
+  curvedSpeed: 8
 --- !u!61 &1823534296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3610,6 +3614,8 @@ MonoBehaviour:
   buildUpTimeCurved: 0.7
   positionDeviationUp: {x: -0.14, y: 1.8, z: 0}
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
+  straightSpeed: 8
+  curvedSpeed: 3
 --- !u!61 &2038629732
 BoxCollider2D:
   m_ObjectHideFlags: 0

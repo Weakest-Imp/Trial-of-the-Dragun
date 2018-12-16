@@ -17,6 +17,9 @@ public class DragunClaw : MonoBehaviour {
 	[SerializeField] private Vector3 positionDeviationUp;
 	[SerializeField] private Vector3 positionDeviationDown;
 
+	[SerializeField] private float straightSpeed = 10;
+	[SerializeField] private float curvedSpeed = 5;
+
 	private Animator anim;
 
 	void Start () {
@@ -47,7 +50,9 @@ public class DragunClaw : MonoBehaviour {
 		yield return new WaitForSeconds (buildUpTimeStraight);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationStraight, this.transform.rotation);
-		bul.GetComponent<DragunBullet> ().DefineIncline (0);
+		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
+		bulControl.SetSpeed (straightSpeed);
+		bulControl.DefineIncline (0);
 	}
 
 	public void UpShot () {
@@ -58,7 +63,9 @@ public class DragunClaw : MonoBehaviour {
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationUp, this.transform.rotation);
-		bul.GetComponent<DragunBullet> ().DefineIncline (1);
+		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
+		bulControl.SetSpeed (curvedSpeed);
+		bulControl.DefineIncline (1);
 	}
 
 	public void DownShot () {
@@ -69,7 +76,9 @@ public class DragunClaw : MonoBehaviour {
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationDown, this.transform.rotation);
-		bul.GetComponent<DragunBullet> ().DefineIncline (-1);
+		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
+		bulControl.SetSpeed (curvedSpeed);
+		bulControl.DefineIncline (-1);
 	}
 
 }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class DragunBullet : MonoBehaviour {
 
-//	[SerializeField] private float gravity = 1;
-	[SerializeField] private float straightSpeed = 10;
-	[SerializeField] private float curvedSpeed = 5;
+//	[SerializeField] private float straightSpeed = 10;
+	private float speed = 5;
+//	[SerializeField] private float curvedSpeed = 5;
 	[SerializeField] private float maxHeight = 4.28f;
 	private int incline = 0;
 	//incline = -1, 0 or 1;
@@ -48,6 +48,10 @@ public class DragunBullet : MonoBehaviour {
 	public void SetGravity (float gravity) {
 		rb.gravityScale = gravity;
 	}
+	public void SetSpeed (float speed) {
+		this.speed = speed;
+
+	}
 
 	//Trajectories____________________________________________________________________________
 	void Straight () {
@@ -55,7 +59,7 @@ public class DragunBullet : MonoBehaviour {
 		float directionY = player.transform.position.y - this.transform.position.y;
 		Vector2 direction = new Vector2 (directionX, directionY);
 		direction.Normalize ();
-		rb.velocity = direction * straightSpeed;
+		rb.velocity = direction * speed;
 		SetGravity (0);
 	}
 
@@ -68,12 +72,12 @@ public class DragunBullet : MonoBehaviour {
 			return;
 		}
 		float deltaY1 = maxHeight - player.transform.position.y;
-		float T = -1 * (player.transform.position.x - this.transform.position.x) / curvedSpeed;
+		float T = -1 * (player.transform.position.x - this.transform.position.x) / speed;
 
 		float speedY = 2*(deltaY0 + Mathf.Sqrt(deltaY0*deltaY1)) / T;
 		float gravity = speedY*speedY/ (2 * deltaY0 * g);
 
-		rb.velocity = new Vector2 ( -1 * curvedSpeed, speedY);
+		rb.velocity = new Vector2 ( -1 * speed, speedY);
 		SetGravity (gravity);
 	}
 
@@ -86,12 +90,12 @@ public class DragunBullet : MonoBehaviour {
 			return;
 		}
 		float deltaY1 = player.transform.position.y + maxHeight;
-		float T = -1 * (player.transform.position.x - this.transform.position.x) / curvedSpeed;
+		float T = -1 * (player.transform.position.x - this.transform.position.x) / speed;
 
 		float speedY = -2*(deltaY0 + Mathf.Sqrt(deltaY0*deltaY1)) / T;
 		float gravity = speedY*speedY/ (2 * deltaY0 * g);
 
-		rb.velocity = new Vector2 ( -1 * curvedSpeed, speedY);
+		rb.velocity = new Vector2 ( -1 * speed, speedY);
 		SetGravity (gravity);
 	}
 

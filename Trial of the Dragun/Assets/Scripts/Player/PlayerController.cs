@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private int maxHealth = 6;
 	private int health;
-	[SerializeField] private float invicibilityTime = 0.8f;
+	[SerializeField] private float invincibilityTime = 0.8f;
 	private bool invincible = false;
 	[SerializeField] private float flickerTime = 0.1f;
 	private SpriteRenderer sr;
@@ -123,10 +123,10 @@ public class PlayerController : MonoBehaviour {
 	IEnumerator Invincibility () {
 		invincible = true;
 		float time = 0;
-		while (time < invicibilityTime) {
+		while (time < invincibilityTime) {
 			sr.enabled = !sr.enabled;
 			yield return new WaitForSeconds (flickerTime);
-			time += Time.deltaTime;
+			time += flickerTime;
 		}
 		sr.enabled = true;
 		invincible = false;
