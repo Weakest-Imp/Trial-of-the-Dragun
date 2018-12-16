@@ -11,12 +11,15 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private int maxHealth = 6;
 	private int health;
+	[SerializeField] private List<HeartUI> healthBar;
+
 	[SerializeField] private float invincibilityTime = 0.8f;
 	private bool invincible = false;
 	[SerializeField] private float flickerTime = 0.1f;
 	private SpriteRenderer sr;
 
 	private Rigidbody2D rb;
+	private Animator anim;
 
 	private float horInput;
 	private float verInput;
@@ -26,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
 		sr = this.GetComponent<SpriteRenderer> ();
+		anim = this.GetComponent<Animator> ();
 		health = maxHealth;
 	}
 
@@ -112,24 +116,27 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void TakeDamage (int damage) {
-		Debug.Log (health);
-		StartCoroutine (Invincibility ());
 		health -= damage;
+		HealthBar ();
 		if (health < 1) {
 			DragunSceneManager.Instance.GameOver ();
-		}
+			anim.SetTrigger ("Dead");
+			return;
+		} 
+		StartCoroutine (Invincibility ());
 	}
 
 	IEnumerator Invincibility () {
 		invincible = true;
-		float time = 0;
-		while (time < invincibilityTime) {
-			sr.enabled = !sr.enabled;
-			yield return new WaitForSeconds (flickerTime);
-			time += flickerTime;
-		}
-		sr.enabled = true;
+		anim.SetTrigger ("Hurt");
+		yield return new WaitForSeconds (invincibilityTime);
 		invincible = false;
+	}
+
+	void HealthBar () {
+		foreach (HeartUI heart in healthBar) {
+			heart.HeartChange (health);
+		}
 	}
 
 }
