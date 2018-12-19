@@ -7,7 +7,8 @@
       <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\DragunSceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Other\HeartUI.cs" Line="16" Column="31" />
+      <File FileName="Assets\Scripts\Other\HeartUI.cs" Line="1" Column="1" />
+      <File FileName="Assets\Shaders\DragunBlink.shader" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="129" Column="32" NotebookId="1" />
     </Files>
