@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 336071594}
   - component: {fileID: 336071593}
   m_Layer: 5
-  m_Name: Button 2
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -890,7 +890,7 @@ GameObject:
   - component: {fileID: 686579102}
   - component: {fileID: 686579101}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Retry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -994,7 +994,7 @@ GameObject:
   - component: {fileID: 754367220}
   - component: {fileID: 754367219}
   m_Layer: 5
-  m_Name: Button 1
+  m_Name: RetryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1127,6 +1127,11 @@ Prefab:
       propertyPath: healthBar.Array.data[2]
       value: 
       objectReference: {fileID: 1457269981}
+    - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: maxHealth
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b3dcc3649f72374f9a3afa30ccf491c, type: 2}
   m_IsPrefabAsset: 0
@@ -1721,7 +1726,7 @@ GameObject:
   - component: {fileID: 955881859}
   - component: {fileID: 955881858}
   m_Layer: 5
-  m_Name: Image
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2949,7 +2954,7 @@ GameObject:
   - component: {fileID: 1415545996}
   - component: {fileID: 1415545995}
   m_Layer: 5
-  m_Name: Ponter 1
+  m_Name: RetryPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2970,7 +2975,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.35855803, y: 0.4338736}
   m_AnchorMax: {x: 0.38911602, y: 0.5057471}
-  m_AnchoredPosition: {x: 0.099998474, y: 0.39999962}
+  m_AnchoredPosition: {x: 0.1000061, y: 0.40000153}
   m_SizeDelta: {x: 75, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1415545995
@@ -3450,6 +3455,7 @@ GameObject:
   - component: {fileID: 1578911207}
   - component: {fileID: 1578911206}
   - component: {fileID: 1578911205}
+  - component: {fileID: 1578911209}
   m_Layer: 5
   m_Name: GameOverCanvas
   m_TagString: Untagged
@@ -3538,6 +3544,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1578911209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1578911204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a973cac34766874469cc8731b30c2e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointers:
+  - {fileID: 1900371791}
+  - {fileID: 1415545993}
 --- !u!1 &1620566685
 GameObject:
   m_ObjectHideFlags: 0
@@ -4393,6 +4413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1174360326}
   dragun: {fileID: 205726620}
+  gameOverCanvas: {fileID: 1578911204}
 --- !u!1 &1900371791
 GameObject:
   m_ObjectHideFlags: 0
@@ -4404,7 +4425,7 @@ GameObject:
   - component: {fileID: 1900371794}
   - component: {fileID: 1900371793}
   m_Layer: 5
-  m_Name: Ponter 2
+  m_Name: MainMenuPointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

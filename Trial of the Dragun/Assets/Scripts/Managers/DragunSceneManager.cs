@@ -11,6 +11,7 @@ public class DragunSceneManager : MonoBehaviour {
 	[SerializeField] private GameObject dragun;
 	private Dragun dragunController;
 
+	[SerializeField] private GameObject gameOverCanvas;
 
 
 	void Awake () {
@@ -22,11 +23,12 @@ public class DragunSceneManager : MonoBehaviour {
 
 		playerController = player.GetComponent<PlayerController> ();
 		dragunController = dragun.GetComponent<Dragun> ();
+		gameOverCanvas.SetActive (false);
 	}
 
 	public void GameOver () {
 		playerController.playerDisable ();
-		//GameOver screen
+		gameOverCanvas.SetActive (true);
 		Debug.Log("game over");
 	}
 

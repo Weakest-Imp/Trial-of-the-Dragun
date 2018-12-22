@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour {
 		sr = this.GetComponent<SpriteRenderer> ();
 		anim = this.GetComponent<Animator> ();
 		health = maxHealth;
+		HealthBar ();
 	}
 
 

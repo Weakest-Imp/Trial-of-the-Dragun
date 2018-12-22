@@ -12,7 +12,7 @@ public class HeartUI : MonoBehaviour {
 
 	[SerializeField] private int middleHealth;
 
-	void Start () {
+	void Awake () {
 		im = this.GetComponent<Image> ();
 	}
 
