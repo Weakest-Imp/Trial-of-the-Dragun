@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\Managers\DragunSceneManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Menus\GameOverMenu.cs" />
+     <Compile Include="Assets\Scripts\Menus\MainMenuMenu.cs" />
      <Compile Include="Assets\Scripts\Other\Background.cs" />
      <Compile Include="Assets\Scripts\Other\HeartUI.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />

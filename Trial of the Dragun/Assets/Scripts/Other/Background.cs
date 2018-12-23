@@ -32,10 +32,10 @@ public class Background : MonoBehaviour {
 		float y = this.transform.position.y;
 		float z = this.transform.position.z;
 		if (x > 5.25F * scale) {
-			this.transform.position = new Vector3 (x - 10.24F * scale, y, z);
+			this.transform.position = new Vector3 (x - 10.22F * scale, y, z);
 		} else {
 			if (x < -5.25F * scale) {
-				this.transform.position = new Vector3 (x + 10.24F * scale, y, z);
+				this.transform.position = new Vector3 (x + 10.22F * scale, y, z);
 			} else {
 				this.transform.position = new Vector3 (x, y, z);
 			}
