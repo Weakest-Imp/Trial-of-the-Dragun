@@ -8,23 +8,34 @@ public class MainMenuMenu : MonoBehaviour {
 	private int pointer = 0;
 	private int pointerLimit;
 
+	[SerializeField] GameObject controlCanvas;
+	private bool isControlCanvas = false;
+
 	private float verInput;
 	private bool verPressed = false;
 	private float fireInput;
+	private bool firePressed = false;
 
 	void Start () {
 		pointerLimit = pointers.Count - 1;
 		pointer = pointerLimit;
 
+		controlCanvas.SetActive (false);
+
 		UpdateDisplay ();
+
 	}
 
 
 	void Update () {
 		InputDetection ();
 
-		Confirm ();
-		MovePointer ();
+		if (!isControlCanvas) { 
+			Confirm ();
+			MovePointer ();
+		} else {
+			QuitControls ();
+		}
 	}
 
 	//General functions of menus______________________________________________________________
@@ -83,21 +94,24 @@ public class MainMenuMenu : MonoBehaviour {
 
 	//Depends on menu__________________________________________________________________________
 	void Confirm () {
+		if (fireInput == 0) {
+			firePressed = false;
+		}
 		if (fireInput == 1) {
-			switch (pointer) {
-			case 2:
-				DragunScene ();
-				break;
-			case 1: 
-				Controls ();
-				break;
-			case 0: 
-				QuitGame ();
-				break;
-			default:
-				Debug.Log ("Pointer out of bounds");
-				break;
+			if (!firePressed) {
+				switch (pointer) {
+				case 1:
+					DragunScene ();
+					break;
+				case 0: 
+					Controls ();
+					break;
+				default:
+					Debug.Log ("Pointer out of bounds");
+					break;
+				}
 			}
+			firePressed = true;
 		}
 	}
 
@@ -106,11 +120,21 @@ public class MainMenuMenu : MonoBehaviour {
 	}
 
 	void Controls () {
-		Debug.Log ("Make controls");
+		controlCanvas.SetActive (true);
+		isControlCanvas = true;
 	}
 
-	void QuitGame () {
-		GameManager.Instance.QuitGame (); 
+	void QuitControls () {
+		if (fireInput == 0) {
+			firePressed = false;
+		}
+		if (fireInput == 1) {
+			if (!firePressed) {
+				controlCanvas.SetActive (false);
+				isControlCanvas = false;
+			}
+			firePressed = true;
+		}
 	}
 
 }

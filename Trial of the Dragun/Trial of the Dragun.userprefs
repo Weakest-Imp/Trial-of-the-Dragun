@@ -11,10 +11,10 @@
       <File FileName="Assets\Shaders\DragunBlink.shader" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Other\Background.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Menus\MainMenuMenu.cs" Line="113" Column="33" />
+      <File FileName="Assets\Scripts\Menus\MainMenuMenu.cs" Line="126" Column="2" />
       <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="1" Column="1" NotebookId="1" />
-      <File FileName="Assets\Scripts\Menus\GameOverMenu.cs" Line="106" Column="2" NotebookId="1" />
+      <File FileName="Assets\Scripts\Menus\GameOverMenu.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
