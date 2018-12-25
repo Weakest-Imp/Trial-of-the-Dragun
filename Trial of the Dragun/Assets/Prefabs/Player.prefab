@@ -80,7 +80,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 2.88, y: 2.88}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -122,6 +122,12 @@ MonoBehaviour:
   bullet: {fileID: 1960480806436422, guid: 0c7602f434b478446b1b046911b97c01, type: 2}
   shootCooldown: 0.5
   maxHealth: 6
+  healthBar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  invincibilityTime: 0.8
+  flickerTime: 0.1
 --- !u!212 &212360081847865720
 SpriteRenderer:
   m_ObjectHideFlags: 1
