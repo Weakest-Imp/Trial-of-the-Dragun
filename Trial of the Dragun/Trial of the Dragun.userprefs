@@ -1,20 +1,19 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Menus\MainMenuMenu.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Dragun\Dragun.cs">
     <Files>
-      <File FileName="Assets\Scripts\Dragun\Dragun.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Dragun\Dragun.cs" Line="130" Column="3" />
       <File FileName="Assets\Scripts\Dragun\DragunBody.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Dragun\DragunClaw.cs" Line="54" Column="1" />
+      <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Managers\DragunSceneManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Other\HeartUI.cs" Line="1" Column="1" />
-      <File FileName="Assets\Shaders\DragunBlink.shader" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Other\Background.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Menus\MainMenuMenu.cs" Line="126" Column="2" />
-      <File FileName="Assets\Scripts\Dragun\DragunBullet.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Assets\Scripts\Player\PlayerController.cs" Line="1" Column="1" NotebookId="1" />
       <File FileName="Assets\Scripts\Menus\GameOverMenu.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Player\PlayerBullet.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Other\HeartUI.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Managers\GameManager.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Other\Background.cs" Line="1" Column="1" NotebookId="1" />
+      <File FileName="Assets\Scripts\Menus\MainMenuMenu.cs" Line="1" Column="1" NotebookId="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

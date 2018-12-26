@@ -42,6 +42,11 @@ public class DragunClaw : MonoBehaviour {
 
 
 	//Shots___________________________________________________________________________________
+	public void Stop() {
+		StopAllCoroutines ();
+	}
+
+
 	public void StraightShot () {
 		StartCoroutine (StraightShotCoroutine ());
 	}

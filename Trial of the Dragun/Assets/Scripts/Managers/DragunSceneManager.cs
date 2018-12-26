@@ -28,6 +28,7 @@ public class DragunSceneManager : MonoBehaviour {
 
 	public void GameOver () {
 		playerController.playerDisable ();
+		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
 		Debug.Log("game over");
 	}

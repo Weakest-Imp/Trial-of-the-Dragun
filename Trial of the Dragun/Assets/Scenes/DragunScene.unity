@@ -1393,8 +1393,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1823534295}
-        m_MethodName: DownShot
+      - m_Target: {fileID: 1433891294}
+        m_MethodName: StopDragun
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
