@@ -12,10 +12,12 @@ public class Dragun : MonoBehaviour {
 
 	private float flag = 0;
 	private bool inAttack = false;
+	int previousAttack = -1;
 
 	void Start () {
 		health = maxHealth;
 
+//		flag = 1.5f;
 		StartCoroutine(DragunBattle ());
 	}
 	
@@ -28,7 +30,7 @@ public class Dragun : MonoBehaviour {
 	public void TakeDamage (int damage) {
 		health -= damage;
 		if (health < 1) {
-			Debug.Log ("Dead DraGun");
+			StopDragun ();
 		}
 	}
 
@@ -69,9 +71,9 @@ public class Dragun : MonoBehaviour {
 
 	//Attacks_____________________________________________________________________________________
 	IEnumerator DragunBattle () {
+		yield return null;
 		if (flag <= 0) {
 			//Introduces Straight shots
-			yield return null;
 			StartCoroutine (FirstAttack ());
 			inAttack = true;
 			flag = 0.5f;
@@ -89,13 +91,36 @@ public class Dragun : MonoBehaviour {
 
 		//Starts acting randomly
 		int halfLife = 1 + maxHealth / 2;
+
 		while (flag <= 1) {
 			if (health < halfLife) {
 				flag = 1.5f;
 			}
 			if (!inAttack) {
-				Debug.Log ("Afini");
-//				StartCoroutine (FirstHalf ());
+				FirstHalf ();
+				inAttack = true;
+			}
+			yield return null;
+		}
+
+		while (flag <= 1.5f) {
+			//Introduces Down shots
+			if (!inAttack) {
+				StartCoroutine (SecondHalfAttack0 ());
+				inAttack = true;
+				previousAttack = 0;
+				flag = 2;
+			}
+			yield return null;
+		}
+
+		while (flag <= 2) {
+			//Second random phase until "death"
+			if (health < 1) {
+				flag = 2.5f;
+			}
+			if (!inAttack) {
+				SecondHalf ();
 				inAttack = true;
 			}
 			yield return null;
@@ -110,7 +135,7 @@ public class Dragun : MonoBehaviour {
 			guns [i].StraightShot ();
 			yield return new WaitForSeconds (1);
 		}
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (2);
 		inAttack = false;
 	}
 
@@ -123,40 +148,117 @@ public class Dragun : MonoBehaviour {
 		guns [1].StraightShot ();
 		yield return new WaitForSeconds (1);
 		guns [0].UpShot ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (3);
 		inAttack = false;
 	}
 
-//	IEnumerator FirstHalf () {
-//
-//	}
-
-	IEnumerator AllOutBarrage () {
-		for (int i = 0; i < guns.Count; i++) {
-			StartCoroutine (RandomBarrage (i));
-			yield return new WaitForSeconds (1);
+	//Random patterns for first half_____________________________________________________________
+	void FirstHalf () {
+		int pattern = Random.Range (0, 4);
+		while (pattern == previousAttack) {
+			pattern = Random.Range (0, 4);
 		}
+		StartCoroutine ("FirstHalfAttack" + pattern);
+		previousAttack = pattern;
 	}
 
-	IEnumerator RandomBarrage (int claw) {
-		while (true) {
-			yield return new WaitForSeconds (4);
-			int incline = Random.Range (-1, 2);
-			switch (incline) {
-			case -1:
-				guns [claw].DownShot ();
-				break;
-			case 0:
-				guns [claw].StraightShot ();
-				break;
-			case 1:
-				guns [claw].UpShot ();
-				break;
-			default:
-				Debug.Log ("Gros GROS blème dans la fonction random");
-				break;
-			}
+	IEnumerator FirstHalfAttack0 () {
+		foreach (DragunClaw gun in guns) {
+			gun.UpShot ();
 		}
+		yield return new WaitForSeconds(4);
+		inAttack = false;
 	}
+
+	IEnumerator FirstHalfAttack1 () {
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator FirstHalfAttack2 () {
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator FirstHalfAttack3 () {
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	//Random patterns for second half____________________________________________________________
+	void SecondHalf () {
+		int pattern = Random.Range (0, 4);
+		while (pattern == previousAttack) {
+			pattern = Random.Range (0, 4);
+		}
+		StartCoroutine ("SecondHalfAttack" + pattern);
+		previousAttack = pattern;
+	}
+
+	IEnumerator SecondHalfAttack0 () {
+		foreach (DragunClaw gun in guns) {
+			gun.UpShot ();
+		}
+		yield return new WaitForSeconds (1.5f);
+
+		foreach (DragunClaw gun in guns) {
+			gun.DownShot ();
+		}
+		yield return new WaitForSeconds(4);
+		inAttack = false;
+	}
+
+	IEnumerator SecondHalfAttack1 () {
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [0].DownShot ();
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator SecondHalfAttack2 () {
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator SecondHalfAttack3 () {
+		guns [0].DownShot ();
+		guns [2].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].DownShot ();
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds(3);
+		inAttack = false;
+	}
+
 
 }
