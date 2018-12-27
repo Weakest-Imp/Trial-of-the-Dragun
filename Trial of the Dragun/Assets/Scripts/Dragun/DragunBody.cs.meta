@@ -3,7 +3,12 @@ guid: b5de2cc672af0744e9b14fddb551d02e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dragun: {instanceID: 0}
+  - parent: {instanceID: 0}
+  - shaderGUItext: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
+  - shaderSpritesDefault: {fileID: 10753, guid: 0000000000000000f000000000000000,
+      type: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

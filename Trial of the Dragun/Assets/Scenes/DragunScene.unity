@@ -1317,6 +1317,9 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 1721674233}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []
 --- !u!1 &852324527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1599,6 +1602,9 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 1003342154}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []
 --- !u!4 &949121047
 Transform:
   m_ObjectHideFlags: 0
@@ -1882,6 +1888,9 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 841521928}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []
 --- !u!1 &1021789979
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,6 +2084,13 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 205726621}
   damage: 1
+  blinkTime: 0.1
+  isHead: 1
+  parts:
+  - {fileID: 1680873484}
+  - {fileID: 25858984}
+  - {fileID: 1620566687}
+  - {fileID: 74725609}
 --- !u!95 &1025987598
 Animator:
   serializedVersion: 3
@@ -3204,6 +3220,9 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 1025987594}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []
 --- !u!1 &1448092162
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,6 +3987,9 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 2068512244}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []
 --- !u!1 &1782685880
 GameObject:
   m_ObjectHideFlags: 0
@@ -4122,6 +4144,9 @@ MonoBehaviour:
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
   straightSpeed: 10
   curvedSpeed: 5
+  blinkTime: 0.1
+  parent: {fileID: 1721674236}
+  gun: {fileID: 469470160}
 --- !u!61 &1805052163
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4271,6 +4296,9 @@ MonoBehaviour:
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
   straightSpeed: 15
   curvedSpeed: 8
+  blinkTime: 0.1
+  parent: {fileID: 1003342157}
+  gun: {fileID: 1093114674}
 --- !u!61 &1823534296
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4634,6 +4662,9 @@ MonoBehaviour:
   positionDeviationDown: {x: -0.48, y: -0.56, z: 0}
   straightSpeed: 8
   curvedSpeed: 3
+  blinkTime: 0.1
+  parent: {fileID: 1435163339}
+  gun: {fileID: 1782685882}
 --- !u!61 &2038629732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4851,3 +4882,6 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   parent: {fileID: 1435163336}
   damage: 1
+  blinkTime: 0.1
+  isHead: 0
+  parts: []

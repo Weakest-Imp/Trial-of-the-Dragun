@@ -17,7 +17,16 @@ public class DragunBody : MonoBehaviour {
 
 	[SerializeField] private Dragun dragun;
 	[SerializeField] private Transform parent;
+
 	[SerializeField] private int damage = 1;
+	[SerializeField] private float blinkTime = 0.1f;
+	private SpriteRenderer sr;
+	//For the head
+	[SerializeField] private bool isHead = false;
+	[SerializeField] private List<SpriteRenderer> parts;
+	private Shader shaderGUItext;
+	private Shader shaderSpritesDefault;
+
 
 	private float time;
 
@@ -26,9 +35,13 @@ public class DragunBody : MonoBehaviour {
 		amplitude = wiggleAmp;
 		time = wiggleOffSet * Mathf.PI;
 		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime;
+
+		sr = this.GetComponent<SpriteRenderer> ();
+		shaderGUItext = Shader.Find("GUI/Text Shader");
+		shaderSpritesDefault = Shader.Find("Sprites/Default");
 	}
 	
-
+	//Movement___________________________________________________________________________________
 	void Update () {
 		MoveWiggle ();
 		time += Time.deltaTime;
@@ -49,12 +62,46 @@ public class DragunBody : MonoBehaviour {
 //		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime2;
 	}
 
+	//Interactions_______________________________________________________________________________
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "PlayerBullet") {
-			Debug.Log ("Hurt animation");
 			dragun.TakeDamage (damage);
+			if (isHead) {
+				StartCoroutine (BlinkHead ());
+			} else {
+				StartCoroutine (Blink ());
+			}
 		}
 	}
+
+	IEnumerator Blink () {
+		//Turns the sprite white
+		sr.material.shader = shaderGUItext;
+		sr.color = Color.white;
+
+		yield return new WaitForSeconds (blinkTime);
+
+		//returns the sprite to normal
+		sr.material.shader = shaderSpritesDefault;
+		sr.color = Color.white;
+	}
+	public void ClawBlink () {
+		//To be called by a claw
+		StartCoroutine (Blink ());
+	}
+
+	IEnumerator BlinkHead () {
+		foreach (SpriteRenderer render in parts) {
+			render.material.shader = shaderGUItext;
+			render.color = Color.white;
+		}
+		yield return new WaitForSeconds (blinkTime);
+		foreach (SpriteRenderer render in parts) {
+			render.material.shader = shaderSpritesDefault;
+			render.color = Color.white;
+		}
+	}
+
 
 	public void Stop () {
 		this.enabled = false;

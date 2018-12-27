@@ -20,25 +20,48 @@ public class DragunClaw : MonoBehaviour {
 	[SerializeField] private float straightSpeed = 10;
 	[SerializeField] private float curvedSpeed = 5;
 
+
 	private Animator anim;
+	[SerializeField] private float blinkTime = 0.1f;
+	private SpriteRenderer sr;
+	[SerializeField] private DragunBody parent;
+	[SerializeField] private SpriteRenderer gun;
+	private Shader shaderGUItext;
+	private Shader shaderSpritesDefault;
 
 	void Start () {
 		anim = this.GetComponent<Animator> ();
+		sr = this.GetComponent<SpriteRenderer> ();
+		shaderGUItext = Shader.Find("GUI/Text Shader");
+		shaderSpritesDefault = Shader.Find("Sprites/Default");
 	}
-	
 
-	void Update () {
-		
-	}
+
 
 	//Interactions________________________________________________________________________________
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "PlayerBullet") {
-			Debug.Log ("Hurt claw animation");
 			dragun.TakeDamage (damage);
+			StartCoroutine (Blink ());
 		}
 	}
 
+	IEnumerator Blink () {
+		parent.ClawBlink ();
+		//Turns the sprite white
+		sr.material.shader = shaderGUItext;
+		sr.color = Color.white;
+		gun.material.shader = shaderGUItext;
+		gun.color = Color.white;
+
+		yield return new WaitForSeconds (blinkTime);
+
+		//returns the sprite to normal
+		sr.material.shader = shaderSpritesDefault;
+		sr.color = Color.white;
+		gun.material.shader = shaderSpritesDefault;
+		gun.color = Color.white;
+	}
 
 
 	//Shots___________________________________________________________________________________
