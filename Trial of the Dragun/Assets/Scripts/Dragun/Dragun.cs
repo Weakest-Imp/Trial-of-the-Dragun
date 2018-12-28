@@ -9,6 +9,7 @@ public class Dragun : MonoBehaviour {
 
 	[SerializeField] private int maxHealth;
 	private int health;
+	[SerializeField] private DragunHealthBar dragunBar;
 
 	private float flag = 0;
 	private bool inAttack = false;
@@ -19,6 +20,7 @@ public class Dragun : MonoBehaviour {
 
 //		flag = 1.5f;
 		StartCoroutine(DragunBattle ());
+		dragunBar.InitiateBar (maxHealth);
 	}
 	
 
@@ -29,9 +31,15 @@ public class Dragun : MonoBehaviour {
 	//Interactions__________________________________________________________________________________________________________________________________________________________________________________
 	public void TakeDamage (int damage) {
 		health -= damage;
+		Debug.Log (health);
+		dragunBar.UpdateBar (health);
 		if (health < 1) {
 			StopDragun ();
 		}
+	}
+
+	public int MaxHealth () {
+		return maxHealth;
 	}
 
 
@@ -67,6 +75,7 @@ public class Dragun : MonoBehaviour {
 		foreach (DragunBody part in body) {
 			part.Phase2 ();
 		}
+		dragunBar.Phase2 (maxHealth);
 	}
 
 	//Attacks_____________________________________________________________________________________
@@ -127,6 +136,7 @@ public class Dragun : MonoBehaviour {
 		}
 	}
 
+	//One time attacks___________________________________________________________________________
 	IEnumerator FirstAttack () {
 		guns [1].StraightShot ();
 		yield return new WaitForSeconds (2f);

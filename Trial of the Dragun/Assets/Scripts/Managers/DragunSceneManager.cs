@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DragunSceneManager : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class DragunSceneManager : MonoBehaviour {
 
 	[SerializeField] private GameObject player;
 	private PlayerController playerController;
+
 	[SerializeField] private GameObject dragun;
 	private Dragun dragunController;
 
@@ -26,6 +28,10 @@ public class DragunSceneManager : MonoBehaviour {
 		gameOverCanvas.SetActive (false);
 	}
 
+	public GameObject GetPlayer () {
+		return this.player;
+	}
+
 	public void GameOver () {
 		playerController.playerDisable ();
 		dragunController.StopDragunAttacks ();
@@ -33,9 +39,6 @@ public class DragunSceneManager : MonoBehaviour {
 		Debug.Log("game over");
 	}
 
-	public GameObject GetPlayer () {
-		return this.player;
-	}
 
 
 }

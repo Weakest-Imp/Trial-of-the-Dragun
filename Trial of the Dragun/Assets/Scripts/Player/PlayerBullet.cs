@@ -24,8 +24,6 @@ public class PlayerBullet : MonoBehaviour {
 	}
 
 	void Explosion () {
-		Debug.Log ("Boom...");
-		//Animation
 		Destroy (this.gameObject);
 	}
 
