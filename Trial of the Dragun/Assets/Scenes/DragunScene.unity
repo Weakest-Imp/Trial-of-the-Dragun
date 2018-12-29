@@ -1086,6 +1086,52 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 536768293}
   m_CullTransparentMesh: 0
+--- !u!1001 &575506477
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4546156074392602, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309988202255884, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &609930734
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,6 +2431,7 @@ GameObject:
   - component: {fileID: 1025987597}
   - component: {fileID: 1025987595}
   - component: {fileID: 1025987598}
+  - component: {fileID: 1025987599}
   m_Layer: 0
   m_Name: Dragon Head
   m_TagString: DraGun
@@ -2528,6 +2575,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1025987599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1025987593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f92bd2f306c5f20428fef145068693ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dragun: {fileID: 1433891294}
+  bigBullet: {fileID: 1309988202255884, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
+  aimTime: 5
+  buildUpTime: 2
+  cooldownTime: 2
+  positionDeviation: {x: -1.33, y: 0, z: 0}
 --- !u!1 &1073691598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3568,6 +3632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5554bc1da7dbc084581012d59641c36f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  head: {fileID: 1025987599}
   body:
   - {fileID: 1025987597}
   - {fileID: 1435163339}

@@ -10,6 +10,7 @@ TagManager:
   - PlayerBullet
   - DraGunBullet
   - Wall
+  - DraGunBigBullet
   layers:
   - Default
   - TransparentFX

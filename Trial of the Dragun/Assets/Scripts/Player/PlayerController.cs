@@ -114,6 +114,9 @@ public class PlayerController : MonoBehaviour {
 		if (!invincible && other.gameObject.tag == "DraGunBullet") {
 			TakeDamage (1);
 		}
+		if (!invincible && other.gameObject.tag == "DraGunBigBullet") {
+			TakeDamage (2);
+		}
 	}
 
 	void TakeDamage (int damage) {

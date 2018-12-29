@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Dragun : MonoBehaviour {
 
+	[SerializeField] private DragunHead head;
 	[SerializeField] private List<DragunBody> body;
 	[SerializeField] private List<DragunClaw> guns;
 
@@ -18,7 +19,7 @@ public class Dragun : MonoBehaviour {
 	void Start () {
 		health = maxHealth;
 
-//		flag = 1.5f;
+		flag = 2.5f;
 		StartCoroutine(DragunBattle ());
 		dragunBar.InitiateBar (maxHealth);
 	}
@@ -134,6 +135,27 @@ public class Dragun : MonoBehaviour {
 			}
 			yield return null;
 		}
+
+		while (flag <= 2.5f) {
+			//Fake death and wait for end of animation
+//			StopDragun ();
+			head.BigGunOut ();
+
+			yield return new WaitForSeconds (2);
+//			RestartDragun ();
+			flag = 3;
+		}
+
+		while (flag <= 3) {
+			//Final phase
+			if (!inAttack) {
+				head.BigShot ();
+				inAttack = true;
+				yield return new WaitForSeconds (10);
+				inAttack = false;
+			}
+		}
+
 	}
 
 	//One time attacks___________________________________________________________________________
@@ -269,6 +291,8 @@ public class Dragun : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		inAttack = false;
 	}
+
+	//After the Big Gun is out____________________________________________________________________
 
 
 }

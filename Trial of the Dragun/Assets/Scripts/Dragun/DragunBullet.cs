@@ -62,6 +62,11 @@ public class DragunBullet : MonoBehaviour {
 		rb.velocity = direction * speed;
 		SetGravity (0);
 	}
+	public void BigStraight (Vector2 direction) {
+		direction.Normalize ();
+		rb.velocity = direction * speed;
+		SetGravity (0);
+	}
 
 	void Up () {
 		float g = -1 * Physics2D.gravity.y;
@@ -99,7 +104,7 @@ public class DragunBullet : MonoBehaviour {
 		SetGravity (gravity);
 	}
 
-	void Rotate () {
+	public void Rotate () {
 		float angle = Mathf.Atan2 (-1 * rb.velocity.y, rb.velocity.x);
 		this.transform.rotation = Quaternion.Euler (0, 0,-180 * angle / Mathf.PI -180);
 	}
