@@ -62,11 +62,19 @@ public class DragunClaw : MonoBehaviour {
 		gun.material.shader = shaderSpritesDefault;
 		gun.color = Color.white;
 	}
+	void AntiBlink () {
+		//Prevents Stop function problems
+		sr.material.shader = shaderSpritesDefault;
+		sr.color = Color.white;
+		gun.material.shader = shaderSpritesDefault;
+		gun.color = Color.white;
+	}
 
 
 	//Shots___________________________________________________________________________________
 	public void Stop() {
 		StopAllCoroutines ();
+		AntiBlink ();
 	}
 
 

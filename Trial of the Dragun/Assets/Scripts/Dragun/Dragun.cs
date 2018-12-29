@@ -8,7 +8,8 @@ public class Dragun : MonoBehaviour {
 	[SerializeField] private List<DragunBody> body;
 	[SerializeField] private List<DragunClaw> guns;
 
-	[SerializeField] private int maxHealth;
+	[SerializeField] private int maxHealth1;
+	[SerializeField] private int maxHealth2;
 	private int health;
 	[SerializeField] private DragunHealthBar dragunBar;
 
@@ -17,11 +18,11 @@ public class Dragun : MonoBehaviour {
 	int previousAttack = -1;
 
 	void Start () {
-		health = maxHealth;
+		health = maxHealth1;
 
-		flag = 2.5f;
+		flag = 2;
 		StartCoroutine(DragunBattle ());
-		dragunBar.InitiateBar (maxHealth);
+		dragunBar.InitiateBar (maxHealth1);
 	}
 	
 
@@ -35,12 +36,12 @@ public class Dragun : MonoBehaviour {
 		Debug.Log (health);
 		dragunBar.UpdateBar (health);
 		if (health < 1) {
-			StopDragun ();
+			if (flag < 3) {
+				FakeDeath ();
+			} else {
+				RealDeath ();
+			}
 		}
-	}
-
-	public int MaxHealth () {
-		return maxHealth;
 	}
 
 
@@ -63,6 +64,7 @@ public class Dragun : MonoBehaviour {
 		foreach (DragunBody part in body) {
 			part.Restart ();
 		}
+		StartCoroutine (DragunBattle ());
 	}
 
 	public void StopDragunHead () {
@@ -72,11 +74,49 @@ public class Dragun : MonoBehaviour {
 		body [0].Restart ();
 	}
 
+	//Deaths cutscenes__________________________________________________________
+	void FakeDeath () {
+		StopDragun ();
+		DragunSceneManager.Instance.FakeDeath ();
+
+		flag = 3;
+		inAttack = false;
+	}
+	public void VibrateDragun () {
+		StartCoroutine (VibrateDragunCoroutine ());
+	}
+	IEnumerator VibrateDragunCoroutine () {
+		for (int i = 0; i < body.Count; i++) {
+			yield return new WaitForSeconds (0.5f);
+			body [i].Vibrate ();
+		}
+		yield return new WaitForSeconds (2);
+
+		for (int i = 0; i < body.Count; i++) {
+			body [i].VibrateStop ();
+		}
+		yield return new WaitForSeconds (0.5f);
+
+		head.BigGunOut ();
+		yield return new WaitForSeconds (3);
+		Debug.Log ("roar");
+
+		DragunSceneManager.Instance.ResumeBattle ();
+		RestartDragun ();
+		Phase2 ();
+	}
+
 	public void Phase2 (){
 		foreach (DragunBody part in body) {
 			part.Phase2 ();
 		}
-		dragunBar.Phase2 (maxHealth);
+		dragunBar.Phase2 (maxHealth2);
+		health = maxHealth2;
+	}
+
+	void RealDeath (){
+		Debug.Log ("Congrats");
+		StopDragun ();
 	}
 
 	//Attacks_____________________________________________________________________________________
@@ -100,7 +140,7 @@ public class Dragun : MonoBehaviour {
 		}
 
 		//Starts acting randomly
-		int halfLife = 1 + maxHealth / 2;
+		int halfLife = 1 + maxHealth1 / 2;
 
 		while (flag <= 1) {
 			if (health < halfLife) {
@@ -138,11 +178,12 @@ public class Dragun : MonoBehaviour {
 
 		while (flag <= 2.5f) {
 			//Fake death and wait for end of animation
-//			StopDragun ();
+			Debug.Log("deaded");
+			StopDragun ();
 			head.BigGunOut ();
 
 			yield return new WaitForSeconds (2);
-//			RestartDragun ();
+			RestartDragun ();
 			flag = 3;
 		}
 
@@ -153,6 +194,8 @@ public class Dragun : MonoBehaviour {
 				inAttack = true;
 				yield return new WaitForSeconds (10);
 				inAttack = false;
+			} else {
+				yield return null;
 			}
 		}
 

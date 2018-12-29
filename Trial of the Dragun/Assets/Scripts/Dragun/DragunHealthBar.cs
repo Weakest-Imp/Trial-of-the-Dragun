@@ -37,8 +37,9 @@ public class DragunHealthBar : MonoBehaviour {
 	public void UpdateBar (int health) {
 		if (health < 1) {
 			fill.gameObject.SetActive (false);
+		} else {
+			dragunBar.value = health;
 		}
-		dragunBar.value = health;
 	}
 
 	//Refills the bar continiously

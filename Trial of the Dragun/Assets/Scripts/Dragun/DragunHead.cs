@@ -38,13 +38,10 @@ public class DragunHead : MonoBehaviour {
 			time += Time.deltaTime;
 			RotateHead ();
 		}
-		time = 0;
-		while (time < buildUpTime) {
-			yield return null;
-			time += Time.deltaTime;
-			Vibrate ();
-		}
-//		ResetVibrate ();
+		Vibrate ();
+		yield return new WaitForSeconds (buildUpTime);
+
+		ResetVibrate ();
 		GameObject bigBul = Instantiate (bigBullet, this.transform.position + positionDeviation, this.transform.rotation);
 		bigBul.GetComponent<DragunBigBullet> ().DefineDirections (headDirection);
 
@@ -66,10 +63,10 @@ public class DragunHead : MonoBehaviour {
 	}
 
 	void Vibrate () {
-		Debug.Log ("Bzzzzzz");
+		bodyPart.Vibrate ();
 	}
 	void ResetVibrate () {
-		//has to register initial position
+		bodyPart.VibrateStop ();
 	}
 
 	public void BigGunOut () {

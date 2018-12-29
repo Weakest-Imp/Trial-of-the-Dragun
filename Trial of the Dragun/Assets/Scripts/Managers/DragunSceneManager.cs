@@ -14,6 +14,9 @@ public class DragunSceneManager : MonoBehaviour {
 	private Dragun dragunController;
 
 	[SerializeField] private GameObject gameOverCanvas;
+	[SerializeField] private Background background1;
+	[SerializeField] private Background background2;
+	[SerializeField] private Image flash;
 
 
 	void Awake () {
@@ -26,6 +29,7 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController = player.GetComponent<PlayerController> ();
 		dragunController = dragun.GetComponent<Dragun> ();
 		gameOverCanvas.SetActive (false);
+		flash.gameObject.SetActive (false);
 	}
 
 	public GameObject GetPlayer () {
@@ -39,6 +43,29 @@ public class DragunSceneManager : MonoBehaviour {
 		Debug.Log("game over");
 	}
 
+	public void FakeDeath () {
+		playerController.playerDisable ();
 
+		StartCoroutine (FakeDeathCoroutine ());
+	}
+	IEnumerator FakeDeathCoroutine () {
+		for (int i = 0; i < 3; i++) {
+			Debug.Log ("needs flash sound");
+			flash.gameObject.SetActive (true);
+			yield return new WaitForSeconds (0.15f);
+			flash.gameObject.SetActive (false);
+			yield return new WaitForSeconds (0.15f);
+		}
+
+		background1.speedChange (0);
+		background2.speedChange (0);
+
+		dragunController.VibrateDragun ();
+	}
+	public void ResumeBattle () {
+		playerController.playerEnable ();
+		background1.Phase2 ();
+		background2.Phase2 ();
+	}
 
 }

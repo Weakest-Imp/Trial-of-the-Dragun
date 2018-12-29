@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour {
 	private float fireInput;
 
 
+
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
 		sr = this.GetComponent<SpriteRenderer> ();
@@ -60,10 +61,12 @@ public class PlayerController : MonoBehaviour {
 		this.enabled = false;
 		resetInput ();
 		Move ();
+		invincible = true;
 	}
 
 	public void playerEnable () {
 		this.enabled = true;
+		invincible = false;
 	}
 
 	//Movement_____________________________________________________________________________________________________________________________________________________________________________________________
