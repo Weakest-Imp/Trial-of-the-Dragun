@@ -15,7 +15,7 @@ public class DragunBody : MonoBehaviour {
 	float wiggleTimeFactor;
 	[SerializeField] float wiggleOffSet;
 
-	[SerializeField] private float vibrateAmplitude = 0.05f;
+	[SerializeField] private float vibrateAmplitude = 0.1f;
 	private Vector3 vibrateDeviation;
 	private Vector3 initialVibratePosition;
 

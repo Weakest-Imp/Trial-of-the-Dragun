@@ -40,7 +40,6 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerDisable ();
 		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
-		Debug.Log("game over");
 	}
 
 	public void FakeDeath () {

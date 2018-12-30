@@ -20,7 +20,7 @@ public class Dragun : MonoBehaviour {
 	void Start () {
 		health = maxHealth1;
 
-		flag = 2;
+//		flag = 2;
 		StartCoroutine(DragunBattle ());
 		dragunBar.InitiateBar (maxHealth1);
 	}
@@ -52,6 +52,7 @@ public class Dragun : MonoBehaviour {
 		foreach (DragunBody part in body) {
 			part.Stop ();
 		}
+		head.Stop ();
 	}
 	public void StopDragunAttacks () {
 		this.StopAllCoroutines ();
@@ -166,9 +167,6 @@ public class Dragun : MonoBehaviour {
 
 		while (flag <= 2) {
 			//Second random phase until "death"
-			if (health < 1) {
-				flag = 2.5f;
-			}
 			if (!inAttack) {
 				SecondHalf ();
 				inAttack = true;
@@ -176,27 +174,25 @@ public class Dragun : MonoBehaviour {
 			yield return null;
 		}
 
-		while (flag <= 2.5f) {
-			//Fake death and wait for end of animation
-			Debug.Log("deaded");
-			StopDragun ();
-			head.BigGunOut ();
 
-			yield return new WaitForSeconds (2);
-			RestartDragun ();
-			flag = 3;
-		}
-
+		//Only gets here after first death
+		inAttack = false;
+		previousAttack = -1;
+		int attack = 1;
 		while (flag <= 3) {
 			//Final phase
 			if (!inAttack) {
-				head.BigShot ();
-				inAttack = true;
-				yield return new WaitForSeconds (10);
-				inAttack = false;
-			} else {
-				yield return null;
+				if (attack < 3) {
+					FinalPart ();
+					attack++;
+					inAttack = true;
+				} else {
+					BigShot ();
+					attack = 1;
+					inAttack = true;
+				}
 			}
+			yield return null;
 		}
 
 	}
@@ -336,6 +332,138 @@ public class Dragun : MonoBehaviour {
 	}
 
 	//After the Big Gun is out____________________________________________________________________
+	void FinalPart () {
+		int pattern = Random.Range (0, 3);
+		while (pattern == previousAttack) {
+			pattern = Random.Range (0, 3);
+		}
+		StartCoroutine ("FinalAttack" + pattern);
+		previousAttack = pattern;
+	}
 
+	IEnumerator FinalAttack0 () {
+		guns [0].StraightShot ();
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
 
+		guns [0].StraightShot ();
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [0].StraightShot ();
+		guns [1].StraightShot ();
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator FinalAttack1 () {
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (0.5f);
+
+		guns [0].DownShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [1].DownShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [0].DownShot ();
+		yield return new WaitForSeconds (0.5f);
+		guns [1].DownShot ();
+		yield return new WaitForSeconds (0.5f);
+
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (3);
+		inAttack = false;
+	}
+
+	IEnumerator FinalAttack2 () {
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [0].UpShot ();
+		guns [1].DownShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [0].DownShot ();
+		guns [1].DownShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (3);
+
+		inAttack = false;
+	}
+
+	//Patterns with a big shot at the end__________________________________________________________
+	void BigShot () {
+		int pattern = Random.Range (0, 2);
+		StartCoroutine ("BigShot" + pattern);
+	}
+
+	IEnumerator BigShot0 () {
+		//Gets called before the rest to get time for charging
+		head.BigShot ();
+
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].StraightShot ();
+		yield return new WaitForSeconds (1);
+
+		guns [0].StraightShot ();
+		yield return new WaitForSeconds (4);//1 before the shot + 3 for cooldown
+
+		inAttack = false;
+	}
+
+	IEnumerator BigShot1 () {
+		//Gets called before the rest to get time for charging
+		head.BigShot ();
+
+		guns [0].DownShot ();
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].DownShot ();
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (2);
+
+		guns [0].DownShot ();
+		guns [1].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [1].DownShot ();
+		guns [0].UpShot ();
+		yield return new WaitForSeconds (1);
+		guns [2].StraightShot ();
+		yield return new WaitForSeconds (4);//1 before the shot + 3 for cooldown
+
+		inAttack = false;
+	}
 }

@@ -73,4 +73,8 @@ public class DragunHead : MonoBehaviour {
 		anim.SetTrigger ("Phase 2");
 	}
 
+	public void Stop () {
+		StopAllCoroutines ();
+	}
+
 }
