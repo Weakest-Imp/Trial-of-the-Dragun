@@ -75,7 +75,6 @@ public class DragunHead : MonoBehaviour {
 
 	public void Stop () {
 		StopAllCoroutines ();
-		ResetVibrate ();
 	}
 
 }

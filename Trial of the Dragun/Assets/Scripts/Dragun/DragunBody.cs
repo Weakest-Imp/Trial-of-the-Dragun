@@ -65,7 +65,6 @@ public class DragunBody : MonoBehaviour {
 
 	public void Phase2 () {
 		amplitude = wiggleAmp2;
-		Debug.Log (wiggleTime2);
 //		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime2;
 	}
 
