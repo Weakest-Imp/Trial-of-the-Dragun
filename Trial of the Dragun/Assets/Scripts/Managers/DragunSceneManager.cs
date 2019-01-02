@@ -67,4 +67,28 @@ public class DragunSceneManager : MonoBehaviour {
 		background2.Phase2 ();
 	}
 
+	public void RealDeath () {
+		playerController.playerDisable ();
+
+		StartCoroutine (RealDeathCoroutine ());
+	}
+	IEnumerator RealDeathCoroutine () {
+		for (int i = 0; i < 3; i++) {
+			Debug.Log ("needs flash sound");
+			flash.gameObject.SetActive (true);
+			yield return new WaitForSeconds (0.15f);
+			flash.gameObject.SetActive (false);
+			yield return new WaitForSeconds (0.15f);
+		}
+
+		background1.speedChange (0);
+		background2.speedChange (0);
+
+		dragunController.FallDown ();
+	}
+	public void Victory () {
+		//Victory picture
+		Debug.Log ("Congrats");
+	}
+
 }

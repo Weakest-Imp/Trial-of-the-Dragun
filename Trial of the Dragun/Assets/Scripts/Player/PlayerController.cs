@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour {
 
 	[SerializeField] private float invincibilityTime = 0.8f;
 	private bool invincible = false;
-	[SerializeField] private float flickerTime = 0.1f;
-	private SpriteRenderer sr;
 
 	private Rigidbody2D rb;
 	private Animator anim;
@@ -29,7 +27,6 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		rb = this.GetComponent<Rigidbody2D> ();
-		sr = this.GetComponent<SpriteRenderer> ();
 		anim = this.GetComponent<Animator> ();
 		health = maxHealth;
 		HealthBar ();

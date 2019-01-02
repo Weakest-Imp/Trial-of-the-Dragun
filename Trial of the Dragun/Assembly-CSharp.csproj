@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Menus\GameOverMenu.cs" />
      <Compile Include="Assets\Scripts\Menus\MainMenuMenu.cs" />
      <Compile Include="Assets\Scripts\Other\Background.cs" />
+     <Compile Include="Assets\Scripts\Other\Explosions.cs" />
      <Compile Include="Assets\Scripts\Other\HeartUI.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />

@@ -18,6 +18,7 @@ public class DragunBody : MonoBehaviour {
 	[SerializeField] private float vibrateAmplitude = 0.1f;
 	private Vector3 vibrateDeviation;
 	private Vector3 initialVibratePosition;
+	[SerializeField] private GameObject boom;
 
 	[SerializeField] private Dragun dragun;
 	[SerializeField] private Transform parent;
@@ -41,6 +42,9 @@ public class DragunBody : MonoBehaviour {
 		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime;
 
 		vibrateDeviation = new Vector3 (0, vibrateAmplitude, 0);
+		if (boom != null) {
+			boom.SetActive (false);
+		}
 
 		sr = this.GetComponent<SpriteRenderer> ();
 		shaderGUItext = Shader.Find("GUI/Text Shader");
@@ -65,7 +69,11 @@ public class DragunBody : MonoBehaviour {
 
 	public void Phase2 () {
 		amplitude = wiggleAmp2;
-//		wiggleTimeFactor = 2 * Mathf.PI / wiggleTime2;
+		if (wiggleTime2 != 0) {
+			wiggleTimeFactor = 2 * Mathf.PI / wiggleTime2;
+		} else {
+			Debug.Log (this.name);
+		}
 	}
 
 	public void Vibrate () {
@@ -82,6 +90,16 @@ public class DragunBody : MonoBehaviour {
 			this.transform.position = initialVibratePosition + vib * vibrateDeviation;
 			yield return new WaitForSeconds (0.05f);
 			vib = -1 * vib;
+		}
+	}
+	public void VibrateFall (float movement) {
+		initialVibratePosition -= new Vector3 (0, movement, 0);
+	}
+
+
+	public void Explode () {
+		if (boom != null) {
+			boom.SetActive (true);
 		}
 	}
 

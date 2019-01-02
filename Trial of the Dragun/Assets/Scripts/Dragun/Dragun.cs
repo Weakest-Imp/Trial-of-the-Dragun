@@ -13,6 +13,8 @@ public class Dragun : MonoBehaviour {
 	private int health;
 	[SerializeField] private DragunHealthBar dragunBar;
 
+	[SerializeField] private float fallSpeed = 1;
+
 	private float flag = 0;
 	private bool inAttack = false;
 	int previousAttack = -1;
@@ -24,16 +26,11 @@ public class Dragun : MonoBehaviour {
 		StartCoroutine(DragunBattle ());
 		dragunBar.InitiateBar (maxHealth1);
 	}
-	
 
-	void Update () {
-		
-	}
 
 	//Interactions__________________________________________________________________________________________________________________________________________________________________________________
 	public void TakeDamage (int damage) {
 		health -= damage;
-		Debug.Log (health);
 		dragunBar.UpdateBar (health);
 		if (health < 1) {
 			if (flag < 3) {
@@ -79,9 +76,6 @@ public class Dragun : MonoBehaviour {
 	void FakeDeath () {
 		StopDragun ();
 		DragunSceneManager.Instance.FakeDeath ();
-
-		flag = 3;
-		inAttack = false;
 	}
 	public void VibrateDragun () {
 		StartCoroutine (VibrateDragunCoroutine ());
@@ -113,11 +107,59 @@ public class Dragun : MonoBehaviour {
 		}
 		dragunBar.Phase2 (maxHealth2);
 		health = maxHealth2;
+
+		flag = 3;
+		inAttack = false;
 	}
 
 	void RealDeath (){
-		Debug.Log ("Congrats");
 		StopDragun ();
+		DragunSceneManager.Instance.RealDeath ();
+	}
+	public void FallDown () {
+		StartCoroutine (FallDownCoroutine ());
+	}
+	IEnumerator FallDownCoroutine () {
+		body [1].Explode ();
+		body [3].Explode ();
+		body [5].Explode ();
+		yield return new WaitForSeconds (1);
+
+		body [2].Explode ();
+		body [4].Explode ();
+		body [6].Explode ();
+		yield return new WaitForSeconds (1);
+
+		body [0].Explode ();
+		foreach (DragunBody part in body) {
+			part.Vibrate ();
+		}
+		yield return new WaitForSeconds (1);
+
+		float X = this.transform.position.x;
+		float Y = this.transform.position.y;
+		float Z = this.transform.position.z;
+
+		float fall;
+		while (Y > -8) {
+			fall = fallSpeed * Time.deltaTime;
+			Y -= fall;
+
+			foreach (DragunBody part in body) {
+				part.VibrateFall (fall);
+			}
+
+			this.transform.position = new Vector3 (X, Y, Z);
+			yield return null;
+		}
+		foreach (DragunBody part in body) {
+			part.VibrateStop ();
+		}
+		yield return new WaitForSeconds (1);
+
+		Debug.Log ("Play Boom sound");
+		DragunSceneManager.Instance.Victory ();
+
 	}
 
 	//Attacks_____________________________________________________________________________________
