@@ -178,7 +178,7 @@ public class Dragun : MonoBehaviour {
 		//Only gets here after first death
 		inAttack = false;
 		previousAttack = -1;
-		int attack = 1;
+		int attack = 2;
 		while (flag <= 3) {
 			//Final phase
 			if (!inAttack) {
