@@ -13,6 +13,8 @@ public class Dragun : MonoBehaviour {
 	private int health;
 	[SerializeField] private DragunHealthBar dragunBar;
 
+	[SerializeField] private float initialX = 0;
+	[SerializeField] private float moveSpeed = 3;
 	[SerializeField] private float fallSpeed = 1;
 
 	private float flag = 0;
@@ -22,9 +24,8 @@ public class Dragun : MonoBehaviour {
 	void Start () {
 		health = maxHealth1;
 
-//		flag = 2;
-		StartCoroutine(DragunBattle ());
 		dragunBar.InitiateBar (maxHealth1);
+		StartCoroutine (Intro ());
 	}
 
 
@@ -33,9 +34,9 @@ public class Dragun : MonoBehaviour {
 		health -= damage;
 		dragunBar.UpdateBar (health);
 		if (health < 1) {
-			if (flag < 3) {
+			if (flag < 2.5f) {
 				FakeDeath ();
-			} else {
+			} else if (flag > 2.5f) {
 				RealDeath ();
 			}
 		}
@@ -72,8 +73,32 @@ public class Dragun : MonoBehaviour {
 		body [0].Restart ();
 	}
 
+	IEnumerator Intro () {
+		StopDragunHead ();
+		DragunSceneManager.Instance.Intro ();
+		yield return new WaitForSeconds (1);
+
+		float X = this.transform.position.x;
+		float Y = this.transform.position.y;
+		float Z = this.transform.position.z;
+
+		while (X > initialX) {
+			X -= moveSpeed * Time.deltaTime;
+			this.transform.position = new Vector3 (X, Y, Z);
+			yield return null;
+		}
+		this.transform.position = new Vector3 (initialX, Y, Z);
+
+		yield return new WaitForSeconds (1);
+
+		DragunSceneManager.Instance.IntroEnd ();
+		RestartDragunHead ();
+		StartCoroutine (DragunBattle ());
+	}
+
 	//Deaths cutscenes__________________________________________________________
 	void FakeDeath () {
+		flag = 2.5f;
 		StopDragun ();
 		DragunSceneManager.Instance.FakeDeath ();
 	}
@@ -113,8 +138,11 @@ public class Dragun : MonoBehaviour {
 	}
 
 	void RealDeath (){
-		StopDragun ();
-		DragunSceneManager.Instance.RealDeath ();
+		if (flag < 4) {
+			flag = 4;
+			StopDragun ();
+			DragunSceneManager.Instance.RealDeath ();
+		}
 	}
 	public void FallDown () {
 		StartCoroutine (FallDownCoroutine ());
@@ -141,7 +169,7 @@ public class Dragun : MonoBehaviour {
 		float Z = this.transform.position.z;
 
 		float fall;
-		while (Y > -8) {
+		while (Y > -11) {
 			fall = fallSpeed * Time.deltaTime;
 			Y -= fall;
 
@@ -158,6 +186,8 @@ public class Dragun : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 
 		Debug.Log ("Play Boom sound");
+		yield return new WaitForSeconds (1);
+
 		DragunSceneManager.Instance.Victory ();
 
 	}
@@ -220,7 +250,7 @@ public class Dragun : MonoBehaviour {
 		//Only gets here after first death
 		inAttack = false;
 		previousAttack = -1;
-		int attack = 1;
+		int attack = 2;
 		while (flag <= 3) {
 			//Final phase
 			if (!inAttack) {
@@ -409,18 +439,14 @@ public class Dragun : MonoBehaviour {
 		guns [1].UpShot ();
 		yield return new WaitForSeconds (0.5f);
 		guns [0].UpShot ();
-		yield return new WaitForSeconds (0.5f);
-		guns [1].UpShot ();
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (1);
 
-		guns [0].DownShot ();
-		yield return new WaitForSeconds (0.5f);
 		guns [1].DownShot ();
 		yield return new WaitForSeconds (0.5f);
 		guns [0].DownShot ();
 		yield return new WaitForSeconds (0.5f);
 		guns [1].DownShot ();
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (1);
 
 		guns [2].StraightShot ();
 		yield return new WaitForSeconds (3);
@@ -429,9 +455,9 @@ public class Dragun : MonoBehaviour {
 
 	IEnumerator FinalAttack2 () {
 		guns [0].StraightShot ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.5f);
 		guns [1].StraightShot ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.5f);
 		guns [2].StraightShot ();
 		yield return new WaitForSeconds (1);
 
@@ -440,13 +466,13 @@ public class Dragun : MonoBehaviour {
 		yield return new WaitForSeconds (1);
 
 		guns [0].DownShot ();
-		guns [1].DownShot ();
+		guns [1].UpShot ();
 		yield return new WaitForSeconds (1);
 
 		guns [2].StraightShot ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.5f);
 		guns [1].StraightShot ();
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (0.5f);
 		guns [0].StraightShot ();
 		yield return new WaitForSeconds (3);
 

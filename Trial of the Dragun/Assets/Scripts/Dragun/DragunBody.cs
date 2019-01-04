@@ -82,6 +82,7 @@ public class DragunBody : MonoBehaviour {
 	}
 	public void VibrateStop () {
 		StopAllCoroutines ();
+		AntiBlink ();
 		this.transform.position = initialVibratePosition;
 	}
 	IEnumerator VibrateCoroutine () {
@@ -140,6 +141,17 @@ public class DragunBody : MonoBehaviour {
 		foreach (SpriteRenderer render in parts) {
 			render.material.shader = shaderSpritesDefault;
 			render.color = Color.white;
+		}
+	}
+	void AntiBlink (){
+		if (isHead) {
+			foreach (SpriteRenderer render in parts) {
+				render.material.shader = shaderSpritesDefault;
+				render.color = Color.white;
+			}
+		} else {
+			sr.material.shader = shaderSpritesDefault;
+			sr.color = Color.white;
 		}
 	}
 

@@ -14,6 +14,7 @@ public class DragunSceneManager : MonoBehaviour {
 	private Dragun dragunController;
 
 	[SerializeField] private GameObject gameOverCanvas;
+	[SerializeField] private GameObject victoryCanvas;
 	[SerializeField] private Background background1;
 	[SerializeField] private Background background2;
 	[SerializeField] private Image flash;
@@ -29,9 +30,11 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController = player.GetComponent<PlayerController> ();
 		dragunController = dragun.GetComponent<Dragun> ();
 		gameOverCanvas.SetActive (false);
+		victoryCanvas.SetActive (false);
 		flash.gameObject.SetActive (false);
 	}
 
+	//Player_____________________________________________________________________________________
 	public GameObject GetPlayer () {
 		return this.player;
 	}
@@ -41,6 +44,16 @@ public class DragunSceneManager : MonoBehaviour {
 		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
 	}
+
+
+	//Dragun______________________________________________________________________________________
+	public void Intro () {
+		playerController.playerDisable ();
+	}
+	public void IntroEnd () {
+		playerController.playerEnable ();
+	}
+
 
 	public void FakeDeath () {
 		playerController.playerDisable ();
@@ -87,8 +100,8 @@ public class DragunSceneManager : MonoBehaviour {
 		dragunController.FallDown ();
 	}
 	public void Victory () {
-		//Victory picture
-		Debug.Log ("Congrats");
+		player.SetActive (false);
+		victoryCanvas.SetActive (true);
 	}
 
 }
