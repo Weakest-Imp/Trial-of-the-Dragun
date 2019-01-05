@@ -11,12 +11,17 @@ public class Background : MonoBehaviour {
 	[SerializeField] float speedChangeTime = 1;
 	float scale;
 
+	[SerializeField] private Color dark;
+	[SerializeField] private float colorChangeTime = 3;
+
 	private Rigidbody2D rb;
+	private SpriteRenderer sr;
 
 	void Start () 
 	{
 		scale = this.transform.parent.localScale.x;
 		rb = this.GetComponent<Rigidbody2D> ();
+		sr = this.GetComponent<SpriteRenderer> ();
 		rb.velocity = new Vector2 (slideSpeed1, 0);
 	}
 
@@ -47,6 +52,7 @@ public class Background : MonoBehaviour {
 	}
 	public void Phase2 () {
 		StartCoroutine (speedChangeCoroutine(slideSpeed2));
+		StartCoroutine (Darken ());
 	}
 
 	IEnumerator speedChangeCoroutine (float newSpeed)
@@ -62,4 +68,24 @@ public class Background : MonoBehaviour {
 		}
 		rb.velocity = new Vector2(newSpeed, 0);
 	}
+
+	IEnumerator Darken () {
+		Color original = sr.color;
+
+		float time = 0;
+		float timeFactor = 1 / colorChangeTime;
+		yield return null;
+		float advancement;
+
+		while (time < colorChangeTime) {
+			time += Time.deltaTime;
+			advancement = time * timeFactor;
+
+			sr.color = Color.Lerp(original, dark, advancement);
+			yield return null;
+		}
+
+		sr.color = dark;
+	}
+
 }

@@ -14,6 +14,12 @@ public class PlayerBullet : MonoBehaviour {
 		rb.velocity = new Vector2 (speed, 0);
 	}
 
+	void Update () {
+		if (this.transform.position.x > 9) {
+			Destroy (this.gameObject);
+		}
+	}
+
 	void OnTriggerEnter2D (Collider2D other) {
 		if (other.gameObject.tag == "DraGun") {
 			Explosion ();

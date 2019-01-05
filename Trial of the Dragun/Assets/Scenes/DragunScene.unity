@@ -482,6 +482,66 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 212165256488270376, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212165256488270376, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212165256488270376, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212165256488270376, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887863339437634, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.r
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887863339437634, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887863339437634, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.b
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362239305118230, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.r
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362239305118230, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.g
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362239305118230, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.b
+      value: 0.5882353
+      objectReference: {fileID: 0}
+    - target: {fileID: 114887863339437634, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114362239305118230, guid: 41080cfe95b2d33448a2cf0a1952f782,
+        type: 2}
+      propertyPath: dark.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41080cfe95b2d33448a2cf0a1952f782, type: 2}
   m_IsPrefabAsset: 0
@@ -1820,6 +1880,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4166786470047290, guid: 5b3dcc3649f72374f9a3afa30ccf491c, type: 2}
       propertyPath: m_LocalScale.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: maxHealth
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
+        type: 2}
+      propertyPath: shootCooldown
       value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3929,8 +3999,8 @@ MonoBehaviour:
   - {fileID: 2038629731}
   - {fileID: 1805052162}
   - {fileID: 1823534295}
-  maxHealth1: 100
-  maxHealth2: 75
+  maxHealth1: 250
+  maxHealth2: 175
   dragunBar: {fileID: 7785263}
   initialX: 0
   moveSpeed: 3

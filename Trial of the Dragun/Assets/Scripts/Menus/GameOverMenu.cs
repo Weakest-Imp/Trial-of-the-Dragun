@@ -11,12 +11,17 @@ public class GameOverMenu : MonoBehaviour {
 	private float verInput;
 	private bool verPressed = false;
 	private float fireInput;
+	private bool firePressed = false;
 
 	void Start () {
 		pointerLimit = pointers.Count - 1;
 		pointer = pointerLimit;
 
 		UpdateDisplay ();
+
+		if (Input.GetAxisRaw ("Fire1") == 1) {
+			firePressed = true;
+		}
 	}
 
 
@@ -33,7 +38,10 @@ public class GameOverMenu : MonoBehaviour {
 
 		//To allow Enter as a confirmation key, as well as fire
 		fireInput = Input.GetAxisRaw ("Fire1");
-		if (Input.GetKeyDown (KeyCode.KeypadEnter)) {
+		if (fireInput == 0) {
+			firePressed = false;
+		}
+		if (Input.GetKeyDown (KeyCode.Return)) {
 			fireInput = 1;
 		}
 	}
@@ -84,7 +92,7 @@ public class GameOverMenu : MonoBehaviour {
 
 	//Depends on menu__________________________________________________________________________
 	void Confirm () {
-		if (fireInput == 1) {
+		if (!firePressed && fireInput == 1) {
 			switch (pointer) {
 			case 0:
 				MainMenu ();

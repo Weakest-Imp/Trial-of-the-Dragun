@@ -44,7 +44,7 @@ public class MainMenuMenu : MonoBehaviour {
 
 		//To allow Enter as a confirmation key, as well as fire
 		fireInput = Input.GetAxisRaw ("Fire1");
-		if (Input.GetKeyDown (KeyCode.KeypadEnter)) {
+		if (Input.GetKeyDown (KeyCode.Return)) {
 			fireInput = 1;
 		}
 	}
