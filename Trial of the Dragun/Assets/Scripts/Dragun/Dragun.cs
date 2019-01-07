@@ -91,6 +91,9 @@ public class Dragun : MonoBehaviour {
 
 		yield return new WaitForSeconds (1);
 
+		DragunSceneManager.Instance.VS ();
+		yield return new WaitForSeconds (1.5f);
+
 		DragunSceneManager.Instance.IntroEnd ();
 		RestartDragunHead ();
 		StartCoroutine (DragunBattle ());

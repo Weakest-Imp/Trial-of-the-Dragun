@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private float invincibilityTime = 0.8f;
 	private bool invincible = false;
 
+	[SerializeField] float initialX = -4.14f;
+	[SerializeField] float introSpeed = 1;
+
 	private Rigidbody2D rb;
 	private Animator anim;
 
@@ -141,6 +144,24 @@ public class PlayerController : MonoBehaviour {
 		foreach (HeartUI heart in healthBar) {
 			heart.HeartChange (health);
 		}
+	}
+
+	public void Intro () {
+		StartCoroutine (IntroCoroutine ());
+	}
+	IEnumerator IntroCoroutine () {
+
+		float X = this.transform.position.x;
+		float Y = this.transform.position.y;
+		float Z = this.transform.position.z;
+
+		while (X < initialX) {
+			X += introSpeed * Time.deltaTime;
+			this.transform.position = new Vector3 (X, Y, Z);
+			yield return null;
+		}
+		this.transform.position = new Vector3 (initialX, Y, Z);
+		yield return null;
 	}
 
 }
