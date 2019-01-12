@@ -1,0 +1,21 @@
+déplacement menu
+
+player:
+-tir
+			!-hurt
+
+			!game over
+victory
+Intro VS
+
+Dragun:
+-roar
+			!-hurt
+			!-tir
+-big gun (sort)
+			!-gros tir
+-meurt : 
+				!--flash
+	--vibre
+				!--explose
+				!--boom de fin

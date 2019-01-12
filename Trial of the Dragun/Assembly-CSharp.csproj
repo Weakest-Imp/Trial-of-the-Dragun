@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Dragun\DragunHealthBar.cs" />
      <Compile Include="Assets\Scripts\Managers\DragunSceneManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\SoundManager.cs" />
      <Compile Include="Assets\Scripts\Menus\GameOverMenu.cs" />
      <Compile Include="Assets\Scripts\Menus\MainMenuMenu.cs" />
      <Compile Include="Assets\Scripts\Other\Background.cs" />
@@ -69,6 +70,7 @@
      <Compile Include="Assets\Scripts\Other\HeartUI.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
+     <None Include="Assets\Sound\Avancement.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Quentin/Desktop/Jeux/Projets Unity/Trial-of-the-Dragun/Trial of the Dragun/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

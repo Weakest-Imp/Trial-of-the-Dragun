@@ -8,10 +8,12 @@ public class PlayerController : MonoBehaviour {
 	[SerializeField] private GameObject bullet;
 	[SerializeField] private float shootCooldown;
 	private float cooldown = 0;
+	[SerializeField] private AudioClip shotSound;
 
 	[SerializeField] private int maxHealth = 6;
 	private int health;
 	[SerializeField] private List<HeartUI> healthBar;
+	[SerializeField] private AudioClip hurtSound;
 
 	[SerializeField] private float invincibilityTime = 0.8f;
 	private bool invincible = false;
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour {
 	//Shooting_____________________________________________________________________________________________________________________________________________________________________________________
 	void Fire () {
 		if (cooldown <= 0 && fireInput > 0) {
+//			SoundManager.Instance.RandomizeSFX(shotSound);
 			Instantiate (bullet, this.transform.position, this.transform.rotation);
 			StartCoroutine (ShootCooldown ());
 		}
@@ -123,6 +126,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void TakeDamage (int damage) {
+		SoundManager.Instance.RandomizeSFX(hurtSound);
 		health -= damage;
 		HealthBar ();
 		if (health < 1) {

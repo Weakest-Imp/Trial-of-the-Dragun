@@ -13,6 +13,11 @@ public class Dragun : MonoBehaviour {
 	private int health;
 	[SerializeField] private DragunHealthBar dragunBar;
 
+	[SerializeField] private AudioClip hurtSound1;
+	[SerializeField] private AudioClip hurtSound2;
+	[SerializeField] private AudioClip littleBoomSound;
+	[SerializeField] private AudioClip finalBoomSound;
+
 	[SerializeField] private float initialX = 0;
 	[SerializeField] private float moveSpeed = 3;
 	[SerializeField] private float fallSpeed = 1;
@@ -33,6 +38,9 @@ public class Dragun : MonoBehaviour {
 	public void TakeDamage (int damage) {
 		health -= damage;
 		dragunBar.UpdateBar (health);
+		if (health > 0) {
+			SoundManager.Instance.RandomizeSFX (hurtSound1, hurtSound2);
+		}
 		if (health < 1) {
 			if (flag < 2.5f) {
 				FakeDeath ();
@@ -151,6 +159,7 @@ public class Dragun : MonoBehaviour {
 		StartCoroutine (FallDownCoroutine ());
 	}
 	IEnumerator FallDownCoroutine () {
+		SoundManager.Instance.PlaySingleLoop (littleBoomSound);
 		body [1].Explode ();
 		body [3].Explode ();
 		body [5].Explode ();
@@ -186,10 +195,9 @@ public class Dragun : MonoBehaviour {
 		foreach (DragunBody part in body) {
 			part.VibrateStop ();
 		}
-		yield return new WaitForSeconds (1);
 
-		Debug.Log ("Play Boom sound");
-		yield return new WaitForSeconds (1);
+		SoundManager.Instance.PlaySingle (finalBoomSound);
+		yield return new WaitForSeconds (2);
 
 		DragunSceneManager.Instance.Victory ();
 

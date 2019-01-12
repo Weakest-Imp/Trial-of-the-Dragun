@@ -3,7 +3,13 @@ guid: 737dc895cbb8bcc4cbe57bd04d4faad4
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - dragun: {instanceID: 0}
+  - SmallGun: {instanceID: 0}
+  - bullet: {instanceID: 0}
+  - shotSound: {fileID: 8300000, guid: b07a87fd672353b47b956ca9ac0f4821, type: 3}
+  - parent: {instanceID: 0}
+  - gun: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

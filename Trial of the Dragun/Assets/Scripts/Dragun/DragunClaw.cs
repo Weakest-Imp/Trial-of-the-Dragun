@@ -20,6 +20,8 @@ public class DragunClaw : MonoBehaviour {
 	[SerializeField] private float straightSpeed = 10;
 	[SerializeField] private float curvedSpeed = 5;
 
+	[SerializeField] private AudioClip shotSound;
+
 
 	private Animator anim;
 	[SerializeField] private float blinkTime = 0.1f;
@@ -85,6 +87,7 @@ public class DragunClaw : MonoBehaviour {
 		anim.SetTrigger ("Straight");
 		yield return new WaitForSeconds (buildUpTimeStraight);
 
+		SoundManager.Instance.RandomizeSFX (shotSound);
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationStraight, this.transform.rotation);
 		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
 		bulControl.SetSpeed (straightSpeed);
@@ -98,6 +101,7 @@ public class DragunClaw : MonoBehaviour {
 		anim.SetTrigger ("Up");
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
+		SoundManager.Instance.RandomizeSFX (shotSound);
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationUp, this.transform.rotation);
 		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
 		bulControl.SetSpeed (curvedSpeed);
@@ -111,6 +115,7 @@ public class DragunClaw : MonoBehaviour {
 		anim.SetTrigger ("Down");
 		yield return new WaitForSeconds (buildUpTimeCurved);
 
+		SoundManager.Instance.RandomizeSFX (shotSound);
 		GameObject bul = Instantiate (bullet, this.transform.position + positionDeviationDown, this.transform.rotation);
 		DragunBullet bulControl = bul.GetComponent<DragunBullet> ();
 		bulControl.SetSpeed (curvedSpeed);

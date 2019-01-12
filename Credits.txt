@@ -1,0 +1,4 @@
+Send mail to Bfxr when done
+	  to Simatic
+
+BGM:

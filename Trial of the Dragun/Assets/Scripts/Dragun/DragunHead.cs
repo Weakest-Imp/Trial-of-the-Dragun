@@ -6,6 +6,7 @@ public class DragunHead : MonoBehaviour {
 
 	[SerializeField] private Dragun dragun;
 	[SerializeField] private GameObject bigBullet;
+	[SerializeField] private AudioClip bigShotSound;
 	private DragunBody bodyPart;
 
 	[SerializeField] private float aimTime = 5;
@@ -42,6 +43,7 @@ public class DragunHead : MonoBehaviour {
 		yield return new WaitForSeconds (buildUpTime);
 
 		ResetVibrate ();
+		SoundManager.Instance.RandomizeSFX(bigShotSound);
 		GameObject bigBul = Instantiate (bigBullet, this.transform.position + positionDeviation, this.transform.rotation);
 		bigBul.GetComponent<DragunBigBullet> ().DefineDirections (headDirection);
 

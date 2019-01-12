@@ -19,6 +19,9 @@ public class DragunSceneManager : MonoBehaviour {
 	[SerializeField] private Background background2;
 	[SerializeField] private Image flash;
 
+	[SerializeField] private AudioClip flashSound;
+	[SerializeField] private AudioClip gameOverJingle;
+
 	[System.Serializable]
 	public class Introduction {
 		public GameObject introBox1;
@@ -54,6 +57,7 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerDisable ();
 		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
+		SoundManager.Instance.PlaySingle (gameOverJingle);
 	}
 
 
@@ -118,7 +122,7 @@ public class DragunSceneManager : MonoBehaviour {
 	}
 	IEnumerator FakeDeathCoroutine () {
 		for (int i = 0; i < 3; i++) {
-			Debug.Log ("needs flash sound");
+			SoundManager.Instance.PlaySingle (flashSound);
 			flash.gameObject.SetActive (true);
 			yield return new WaitForSeconds (0.15f);
 			flash.gameObject.SetActive (false);
@@ -128,6 +132,7 @@ public class DragunSceneManager : MonoBehaviour {
 		background1.speedChange (0);
 		background2.speedChange (0);
 
+		yield return new WaitForSeconds (0.5f);
 		dragunController.VibrateDragun ();
 	}
 	public void ResumeBattle () {
@@ -143,7 +148,7 @@ public class DragunSceneManager : MonoBehaviour {
 	}
 	IEnumerator RealDeathCoroutine () {
 		for (int i = 0; i < 3; i++) {
-			Debug.Log ("needs flash sound");
+			SoundManager.Instance.PlaySingle (flashSound);
 			flash.gameObject.SetActive (true);
 			yield return new WaitForSeconds (0.15f);
 			flash.gameObject.SetActive (false);
@@ -153,6 +158,7 @@ public class DragunSceneManager : MonoBehaviour {
 		background1.speedChange (0);
 		background2.speedChange (0);
 
+		yield return new WaitForSeconds (0.5f);
 		dragunController.FallDown ();
 	}
 	public void Victory () {
