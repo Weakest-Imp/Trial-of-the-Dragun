@@ -158,6 +158,19 @@ public class DragunSceneManager : MonoBehaviour {
 	public void Victory () {
 		player.SetActive (false);
 		victoryCanvas.SetActive (true);
+		StartCoroutine (BackToMainMenu ());
+	}
+	IEnumerator BackToMainMenu () {
+		//To not let it disappear instantely
+		yield return new WaitForSeconds (1);
+
+		float fireInput = Input.GetAxisRaw ("Fire1");
+		while (fireInput != 1) {
+			yield return null;
+			fireInput = Input.GetAxisRaw ("Fire1");
+		}
+		GameManager.Instance.MainMenu ();
+
 	}
 
 }
