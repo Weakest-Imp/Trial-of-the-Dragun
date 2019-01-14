@@ -70,7 +70,10 @@
      <Compile Include="Assets\Scripts\Other\HeartUI.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerBullet.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
-     <None Include="Assets\Sound\Avancement.txt" />
+     <None Include="Assets\Sound\BGM\TFSUI\Toon Adventure\Read Me!.txt" />
+     <None Include="Assets\Sound\BGM\TFSUI\Let&apos;s Go! Action Soundtrack\Read Me!.txt" />
+     <None Include="Assets\Sound\BGM\TFSUI\Toon Battle\Read Me!.txt" />
+     <None Include="Assets\Sound\SFX\Avancement.txt" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Quentin/Desktop/Jeux/Projets Unity/Trial-of-the-Dragun/Trial of the Dragun/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

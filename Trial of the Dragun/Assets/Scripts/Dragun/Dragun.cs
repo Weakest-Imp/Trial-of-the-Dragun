@@ -159,7 +159,7 @@ public class Dragun : MonoBehaviour {
 		StartCoroutine (FallDownCoroutine ());
 	}
 	IEnumerator FallDownCoroutine () {
-		SoundManager.Instance.PlaySingleLoop (littleBoomSound);
+		SoundManager.Instance.PlaySFXLoop (littleBoomSound);
 		body [1].Explode ();
 		body [3].Explode ();
 		body [5].Explode ();
@@ -196,7 +196,7 @@ public class Dragun : MonoBehaviour {
 			part.VibrateStop ();
 		}
 
-		SoundManager.Instance.PlaySingle (finalBoomSound);
+		SoundManager.Instance.PlaySFX (finalBoomSound);
 		yield return new WaitForSeconds (2);
 
 		DragunSceneManager.Instance.Victory ();

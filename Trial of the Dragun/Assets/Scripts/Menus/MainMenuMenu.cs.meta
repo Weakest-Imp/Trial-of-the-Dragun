@@ -3,7 +3,9 @@ guid: 86c264517f2475f47a9185e9cdf48aa5
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - controlCanvas: {instanceID: 0}
+  - MainMenuBGM: {fileID: 8300000, guid: 5fa01206a829f934b90ceecd812e209f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

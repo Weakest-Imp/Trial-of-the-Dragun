@@ -60,11 +60,13 @@ public class Background : MonoBehaviour {
 	{
 		Vector2 change = new Vector2(newSpeed - rb.velocity.x, 0);
 		float time = 0;
+		float delta = 0;
 		change = change / speedChangeTime;
 		while (time < speedChangeTime) {
 			yield return null;
-			rb.velocity += Time.deltaTime * change;
-			time += Time.deltaTime;
+			delta = Time.deltaTime;
+			rb.velocity += delta * change;
+			time += delta;
 		}
 		rb.velocity = new Vector2(newSpeed, 0);
 	}

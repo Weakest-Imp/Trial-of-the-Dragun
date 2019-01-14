@@ -11,6 +11,8 @@ public class MainMenuMenu : MonoBehaviour {
 	[SerializeField] GameObject controlCanvas;
 	private bool isControlCanvas = false;
 
+	[SerializeField] AudioClip MainMenuBGM;
+
 	private float verInput;
 	private bool verPressed = false;
 	private float fireInput;
@@ -23,7 +25,7 @@ public class MainMenuMenu : MonoBehaviour {
 		controlCanvas.SetActive (false);
 
 		UpdateDisplay ();
-
+		SoundManager.Instance.PlayBGM (MainMenuBGM);
 	}
 
 

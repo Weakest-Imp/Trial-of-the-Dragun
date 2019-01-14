@@ -19,6 +19,9 @@ public class DragunSceneManager : MonoBehaviour {
 	[SerializeField] private Background background2;
 	[SerializeField] private Image flash;
 
+	[SerializeField] private AudioClip battleBGM1;
+	[SerializeField] private AudioClip battleBGM2;
+
 	[SerializeField] private AudioClip flashSound;
 	[SerializeField] private AudioClip gameOverJingle;
 
@@ -48,6 +51,10 @@ public class DragunSceneManager : MonoBehaviour {
 		flash.gameObject.SetActive (false);
 	}
 
+	void Start () {
+		SoundManager.Instance.StopBGM ();
+	}
+
 	//Player_____________________________________________________________________________________
 	public GameObject GetPlayer () {
 		return this.player;
@@ -57,7 +64,7 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerDisable ();
 		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
-		SoundManager.Instance.PlaySingle (gameOverJingle);
+		SoundManager.Instance.PlaySFX (gameOverJingle);
 	}
 
 
@@ -94,6 +101,7 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerEnable ();
 		StartCoroutine (BoxOut ());
 		intro.versus.SetActive (false);
+		SoundManager.Instance.PlayBGM (battleBGM1);
 	}
 	IEnumerator BoxOut (){
 		float height = intro.introBox1.transform.position.y;
@@ -117,12 +125,13 @@ public class DragunSceneManager : MonoBehaviour {
 
 	public void FakeDeath () {
 		playerController.playerDisable ();
+		SoundManager.Instance.StopBGM ();
 
 		StartCoroutine (FakeDeathCoroutine ());
 	}
 	IEnumerator FakeDeathCoroutine () {
 		for (int i = 0; i < 3; i++) {
-			SoundManager.Instance.PlaySingle (flashSound);
+			SoundManager.Instance.PlaySFX (flashSound);
 			flash.gameObject.SetActive (true);
 			yield return new WaitForSeconds (0.15f);
 			flash.gameObject.SetActive (false);
@@ -139,16 +148,18 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerEnable ();
 		background1.Phase2 ();
 		background2.Phase2 ();
+		SoundManager.Instance.PlayBGM (battleBGM2);
 	}
 
 	public void RealDeath () {
 		playerController.playerDisable ();
+		SoundManager.Instance.StopBGM ();
 
 		StartCoroutine (RealDeathCoroutine ());
 	}
 	IEnumerator RealDeathCoroutine () {
 		for (int i = 0; i < 3; i++) {
-			SoundManager.Instance.PlaySingle (flashSound);
+			SoundManager.Instance.PlaySFX (flashSound);
 			flash.gameObject.SetActive (true);
 			yield return new WaitForSeconds (0.15f);
 			flash.gameObject.SetActive (false);
@@ -164,6 +175,7 @@ public class DragunSceneManager : MonoBehaviour {
 	public void Victory () {
 		player.SetActive (false);
 		victoryCanvas.SetActive (true);
+		Debug.Log ("Victory jingle");
 		StartCoroutine (BackToMainMenu ());
 	}
 	IEnumerator BackToMainMenu () {
