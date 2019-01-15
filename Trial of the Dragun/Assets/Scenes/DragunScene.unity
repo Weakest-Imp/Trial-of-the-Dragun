@@ -2457,7 +2457,7 @@ Prefab:
         type: 2}
       propertyPath: shotSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 9221a68be6ff1544091e192edb2100df, type: 3}
     - target: {fileID: 114143375050254256, guid: 5b3dcc3649f72374f9a3afa30ccf491c,
         type: 2}
       propertyPath: hurtSound
@@ -5461,11 +5461,12 @@ MonoBehaviour:
   - {fileID: 2038629731}
   - {fileID: 1805052162}
   - {fileID: 1823534295}
-  maxHealth1: 250
-  maxHealth2: 175
+  maxHealth1: 5
+  maxHealth2: 5
   dragunBar: {fileID: 7785263}
   hurtSound1: {fileID: 8300000, guid: f78496628b276d9439b6d2ae0a670715, type: 3}
   hurtSound2: {fileID: 8300000, guid: cef317b3e4084944ba4c97b100bfbbe4, type: 3}
+  ROAR: {fileID: 8300000, guid: 4e9a429b5c00f4f2e8234fe5835fef69, type: 3}
   littleBoomSound: {fileID: 8300000, guid: b07a87fd672353b47b956ca9ac0f4821, type: 3}
   finalBoomSound: {fileID: 8300000, guid: 492a3ef2f4068bf4aa3a3f449a949a24, type: 3}
   initialX: 0
@@ -6037,6 +6038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a973cac34766874469cc8731b30c2e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuBip: {fileID: 8300000, guid: df6107a7228a95241acf76bea54d404f, type: 3}
   pointers:
   - {fileID: 1900371791}
   - {fileID: 1415545993}
@@ -7658,10 +7660,13 @@ MonoBehaviour:
   background1: {fileID: 297267376}
   background2: {fileID: 87299776}
   flash: {fileID: 59407398}
+  buildUpBGM: {fileID: 8300000, guid: b4e211cae8de34919b1b92e670726b52, type: 3}
   battleBGM1: {fileID: 8300000, guid: 178b60e6ad6425941b2fc01c6ffa1069, type: 3}
   battleBGM2: {fileID: 8300000, guid: c9f9fe89d12259343a3a9a2c31ad8524, type: 3}
+  clashSound: {fileID: 8300000, guid: 44b3696bd5132401cafdca8526812f63, type: 3}
   flashSound: {fileID: 8300000, guid: 52c6a9d340e42ce49bb2d28ec9b6ec42, type: 3}
   gameOverJingle: {fileID: 8300000, guid: b52c7fd3bdc75fb49b8c63608482d916, type: 3}
+  victoryJingle: {fileID: 8300000, guid: 9b1cde0c2a6be405ba097772a687b5ae, type: 3}
   intro:
     introBox1: {fileID: 1329028010}
     introBox2: {fileID: 1598077417}

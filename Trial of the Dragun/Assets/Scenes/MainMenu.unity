@@ -511,6 +511,7 @@ MonoBehaviour:
   - {fileID: 2005753403}
   controlCanvas: {fileID: 580400263}
   MainMenuBGM: {fileID: 8300000, guid: 5fa01206a829f934b90ceecd812e209f, type: 3}
+  menuBip: {fileID: 8300000, guid: 85b0a0192cbc749159c4f71241b3ff2d, type: 3}
 --- !u!1001 &939462107
 Prefab:
   m_ObjectHideFlags: 0

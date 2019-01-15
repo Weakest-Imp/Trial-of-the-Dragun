@@ -12,6 +12,7 @@ public class MainMenuMenu : MonoBehaviour {
 	private bool isControlCanvas = false;
 
 	[SerializeField] AudioClip MainMenuBGM;
+	[SerializeField] AudioClip menuBip;
 
 	private float verInput;
 	private bool verPressed = false;
@@ -73,12 +74,14 @@ public class MainMenuMenu : MonoBehaviour {
 
 	void PointerUp () {
 		pointer++;
+		SoundManager.Instance.PlaySFX (menuBip);
 		if (pointer > pointerLimit) {
 			pointer = 0;
 		}
 	}
 	void PointerDown () {
 		pointer--;
+		SoundManager.Instance.PlaySFX (menuBip);
 		if (pointer < 0) {
 			pointer = pointerLimit;
 		}
@@ -101,6 +104,7 @@ public class MainMenuMenu : MonoBehaviour {
 		}
 		if (fireInput == 1) {
 			if (!firePressed) {
+				SoundManager.Instance.PlaySFX (menuBip);
 				switch (pointer) {
 				case 1:
 					DragunScene ();

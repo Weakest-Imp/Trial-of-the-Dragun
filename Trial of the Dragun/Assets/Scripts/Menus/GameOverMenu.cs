@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameOverMenu : MonoBehaviour {
 
+	[SerializeField] AudioClip menuBip;
+
 	[SerializeField] List<GameObject> pointers;
 	private int pointer = 0;
 	private int pointerLimit;
@@ -68,12 +70,14 @@ public class GameOverMenu : MonoBehaviour {
 
 	void PointerUp () {
 		pointer++;
+		SoundManager.Instance.PlaySFX (menuBip);
 		if (pointer > pointerLimit) {
 			pointer = 0;
 		}
 	}
 	void PointerDown () {
 		pointer--;
+		SoundManager.Instance.PlaySFX (menuBip);
 		if (pointer < 0) {
 			pointer = pointerLimit;
 		}
@@ -93,6 +97,7 @@ public class GameOverMenu : MonoBehaviour {
 	//Depends on menu__________________________________________________________________________
 	void Confirm () {
 		if (!firePressed && fireInput == 1) {
+			SoundManager.Instance.PlaySFX (menuBip);
 			switch (pointer) {
 			case 0:
 				MainMenu ();

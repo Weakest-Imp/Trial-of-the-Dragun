@@ -1,15 +1,16 @@
-déplacement menu
+			!déplacement menu
 
-player:
--tir
+			!player:
+			!-tir
 			!-hurt
 
 			!game over
-victory
-Intro VS
+			!victory
+			!Intro BGM
+			!Intro slash
 
 Dragun:
--roar
+		!-roar
 			!-hurt
 			!-tir
 -big gun (sort)

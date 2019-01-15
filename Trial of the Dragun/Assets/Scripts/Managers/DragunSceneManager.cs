@@ -19,11 +19,14 @@ public class DragunSceneManager : MonoBehaviour {
 	[SerializeField] private Background background2;
 	[SerializeField] private Image flash;
 
+	[SerializeField] private AudioClip buildUpBGM;
 	[SerializeField] private AudioClip battleBGM1;
 	[SerializeField] private AudioClip battleBGM2;
 
+	[SerializeField] private AudioClip clashSound;
 	[SerializeField] private AudioClip flashSound;
 	[SerializeField] private AudioClip gameOverJingle;
+	[SerializeField] private AudioClip victoryJingle;
 
 	[System.Serializable]
 	public class Introduction {
@@ -53,6 +56,7 @@ public class DragunSceneManager : MonoBehaviour {
 
 	void Start () {
 		SoundManager.Instance.StopBGM ();
+
 	}
 
 	//Player_____________________________________________________________________________________
@@ -64,7 +68,7 @@ public class DragunSceneManager : MonoBehaviour {
 		playerController.playerDisable ();
 		dragunController.StopDragunAttacks ();
 		gameOverCanvas.SetActive (true);
-		SoundManager.Instance.PlaySFX (gameOverJingle);
+		SoundManager.Instance.PlayJingle (gameOverJingle);
 	}
 
 
@@ -72,7 +76,13 @@ public class DragunSceneManager : MonoBehaviour {
 	public void Intro () {
 		playerController.playerDisable ();
 		playerController.Intro ();
+
+		StartCoroutine (IntroBGM ());
 		StartCoroutine (BoxIn ());
+	}
+	IEnumerator IntroBGM () {
+		yield return new WaitForSeconds (1.1f);
+		SoundManager.Instance.FadeInBGM (buildUpBGM);
 	}
 	IEnumerator BoxIn () {
 		intro.introBox1.SetActive (true);
@@ -96,6 +106,7 @@ public class DragunSceneManager : MonoBehaviour {
 	}
 	public void VS () {
 		intro.versus.SetActive (true);
+		SoundManager.Instance.PlaySFX (clashSound);
 	}
 	public void IntroEnd () {
 		playerController.playerEnable ();
@@ -175,12 +186,12 @@ public class DragunSceneManager : MonoBehaviour {
 	public void Victory () {
 		player.SetActive (false);
 		victoryCanvas.SetActive (true);
-		Debug.Log ("Victory jingle");
+		SoundManager.Instance.PlayJingle (victoryJingle);
 		StartCoroutine (BackToMainMenu ());
 	}
 	IEnumerator BackToMainMenu () {
 		//To not let it disappear instantely
-		yield return new WaitForSeconds (1);
+		yield return new WaitForSeconds (4);
 
 		float fireInput = Input.GetAxisRaw ("Fire1");
 		while (fireInput != 1) {

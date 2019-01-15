@@ -15,6 +15,7 @@ public class Dragun : MonoBehaviour {
 
 	[SerializeField] private AudioClip hurtSound1;
 	[SerializeField] private AudioClip hurtSound2;
+	[SerializeField] private AudioClip ROAR;
 	[SerializeField] private AudioClip littleBoomSound;
 	[SerializeField] private AudioClip finalBoomSound;
 
@@ -115,6 +116,7 @@ public class Dragun : MonoBehaviour {
 	}
 	public void VibrateDragun () {
 		StartCoroutine (VibrateDragunCoroutine ());
+//		SoundManager.Instance.PlaySFXLoop (finalBoomSound);
 	}
 	IEnumerator VibrateDragunCoroutine () {
 		for (int i = 0; i < body.Count; i++) {
@@ -129,8 +131,9 @@ public class Dragun : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 
 		head.BigGunOut ();
-		yield return new WaitForSeconds (3);
-		Debug.Log ("roar");
+		yield return new WaitForSeconds (1);
+		SoundManager.Instance.PlaySFX (ROAR);
+		yield return new WaitForSeconds (2);
 
 		DragunSceneManager.Instance.ResumeBattle ();
 		RestartDragun ();
@@ -159,7 +162,7 @@ public class Dragun : MonoBehaviour {
 		StartCoroutine (FallDownCoroutine ());
 	}
 	IEnumerator FallDownCoroutine () {
-		SoundManager.Instance.PlaySFXLoop (littleBoomSound);
+		SoundManager.Instance.PlaySFXLoopCrescendo (littleBoomSound);
 		body [1].Explode ();
 		body [3].Explode ();
 		body [5].Explode ();

@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour {
 	//Shooting_____________________________________________________________________________________________________________________________________________________________________________________
 	void Fire () {
 		if (cooldown <= 0 && fireInput > 0) {
-//			SoundManager.Instance.RandomizeSFX(shotSound);
+			SoundManager.Instance.RandomizeSFX(shotSound);
 			Instantiate (bullet, this.transform.position, this.transform.rotation);
 			StartCoroutine (ShootCooldown ());
 		}
