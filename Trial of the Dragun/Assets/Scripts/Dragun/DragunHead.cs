@@ -7,6 +7,7 @@ public class DragunHead : MonoBehaviour {
 	[SerializeField] private Dragun dragun;
 	[SerializeField] private GameObject bigBullet;
 	[SerializeField] private AudioClip bigShotSound;
+	[SerializeField] private AudioClip bigGunOutSound;
 	private DragunBody bodyPart;
 
 	[SerializeField] private float aimTime = 5;
@@ -73,6 +74,19 @@ public class DragunHead : MonoBehaviour {
 
 	public void BigGunOut () {
 		anim.SetTrigger ("Phase 2");
+		StartCoroutine (BigGunSound ());
+	}
+	IEnumerator BigGunSound () {
+		SoundManager.Instance.PlaySFX (bigGunOutSound);
+		yield return new WaitForSeconds (1.5f);
+
+		SoundManager.Instance.StopSFX ();
+		yield return new WaitForSeconds (0.5f);
+
+		SoundManager.Instance.PlaySFX (bigGunOutSound);
+		yield return new WaitForSeconds (1.5f);
+
+		SoundManager.Instance.StopSFX ();
 	}
 
 	public void Stop () {

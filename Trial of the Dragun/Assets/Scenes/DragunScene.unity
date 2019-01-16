@@ -3821,6 +3821,7 @@ MonoBehaviour:
   dragun: {fileID: 1433891294}
   bigBullet: {fileID: 1309988202255884, guid: ed59f46a6473fe0468194941e8f166e1, type: 2}
   bigShotSound: {fileID: 8300000, guid: ef43e1ee1c20aed42a133493f8f3cb99, type: 3}
+  bigGunOutSound: {fileID: 8300000, guid: c275f693e1d7bde4289dc63b41834d73, type: 3}
   aimTime: 5
   buildUpTime: 2
   cooldownTime: 2
@@ -5466,6 +5467,7 @@ MonoBehaviour:
   dragunBar: {fileID: 7785263}
   hurtSound1: {fileID: 8300000, guid: f78496628b276d9439b6d2ae0a670715, type: 3}
   hurtSound2: {fileID: 8300000, guid: cef317b3e4084944ba4c97b100bfbbe4, type: 3}
+  vibrateSound: {fileID: 8300000, guid: cf32ef82184225d4e8217b7c9a357bb6, type: 3}
   ROAR: {fileID: 8300000, guid: 4e9a429b5c00f4f2e8234fe5835fef69, type: 3}
   littleBoomSound: {fileID: 8300000, guid: b07a87fd672353b47b956ca9ac0f4821, type: 3}
   finalBoomSound: {fileID: 8300000, guid: 492a3ef2f4068bf4aa3a3f449a949a24, type: 3}

@@ -11,7 +11,6 @@ public class SoundManager : MonoBehaviour {
 	[SerializeField] private float lowPitchRange = .95f;
 	[SerializeField] private float highPitchRange = 1.05f;
 	[SerializeField] private float fadeTimeBGM = 1;
-	[SerializeField] private float fadeTimeSFX = 2;
 
 	void Awake () {
 		if (Instance == null) {
@@ -75,6 +74,9 @@ public class SoundManager : MonoBehaviour {
 		musicSource.Play ();
 	}
 
+	public void StopSFX () {
+		efxSource.Stop ();
+	}
 	public void PlaySFX (AudioClip clip) {
 		efxSource.loop = false;
 		efxSource.clip = clip;
@@ -86,20 +88,20 @@ public class SoundManager : MonoBehaviour {
 		efxSource.clip = clip;
 		efxSource.Play ();
 	}
-	public void PlaySFXLoopCrescendo (AudioClip clip) {
+	public void PlaySFXLoopCrescendo (AudioClip clip, float fadeTime) {
 		efxSource.loop = true;
 		efxSource.clip = clip;
 		efxSource.volume = 0;
 		efxSource.Play ();
 
-		StartCoroutine (CrescendoCoroutine ());
+		StartCoroutine (CrescendoCoroutine (fadeTime));
 
 	}
-	IEnumerator CrescendoCoroutine () {
-		float factor = 1/fadeTimeSFX;
+	IEnumerator CrescendoCoroutine (float fadeTime) {
+		float factor = 1/fadeTime;
 		float time = 0;
 		float delta = 0;
-		while (time < fadeTimeSFX) {
+		while (time < fadeTime) {
 			yield return null;
 			delta = Time.deltaTime;
 			efxSource.volume += delta * factor;
